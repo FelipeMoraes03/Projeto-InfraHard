@@ -32,7 +32,7 @@ module control_unit (
   output wire [2:0] ShiftControl,
 
   //DIV/MULT
-  output wire DIV/MULT_Control,
+  output wire DIVMULT_Control,
 
   //LS Control
   output wire [1:0] LSControlSignal,
@@ -177,6 +177,7 @@ always @(posedge clk) begin
 	else begin
 		count = count + 1;
 	end
+end
 
 initial begin
   reset_out = 1'b1;
@@ -230,7 +231,7 @@ always @(posedge clk) begin
                 state = ST_div;
               end
 
-              FUN_ mult: begin
+              FUN_mult: begin
                 state = ST_mult;
               end
 
@@ -365,413 +366,414 @@ always @(posedge clk) begin
         endcase
       end
   
-    ST_IOP: begin
-      /*some code*/
-    end
-
-    ST_and: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b011;
-      state = ST_RegWrite_1;
-    end
-
-    ST_add: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b001;
-      state = ST_RegWrite_1;
-    end
-
-    ST_addi: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b01;
-      ALUOp = 3'b001;
-      state = ST_RegWrite_1;
-    end
-
-    ST_addiu: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b01;
-      ALUOp = 3'b001;
-      state = ST_RegWrite_1;
-    end
-
-    ST_sub: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b010;
-      state = ST_RegWrite_1;
-    end
-
-    ST_RegWrite_1: begin
-      MemToReg = 3'b000;
-      RegDst = 2'b01;
-      RegWrite = 1'b1;
-      if (OF == 1'b1) begin
-        state = ST_OF_1;
+      ST_IOP: begin
+        /*some code*/
       end
-      else begin
+
+      ST_and: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b011;
+        state = ST_RegWrite_1;
+      end
+
+      ST_add: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b001;
+        state = ST_RegWrite_1;
+      end
+
+      ST_addi: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b01;
+        ALUOp = 3'b001;
+        state = ST_RegWrite_1;
+      end
+
+      ST_addiu: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b01;
+        ALUOp = 3'b001;
+        state = ST_RegWrite_1;
+      end
+
+      ST_sub: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b010;
+        state = ST_RegWrite_1;
+      end
+
+      ST_RegWrite_1: begin
+        MemToReg = 3'b000;
+        RegDst = 2'b01;
+        RegWrite = 1'b1;
+        if (OF == 1'b1) begin
+          state = ST_OF_1;
+        end
+        else begin
+          state = ST_fetch;
+        end
+      end
+
+      ST_OF_1: begin
+        ALUSrcA = 1'b0;
+        ALUOp = 3'b000;
+        state = ST_OF_2;
+      end
+
+      ST_OF_2: begin
+        IorD = 3'b011;
+        MemRead = 1'b1;
+        PCSource = 3'b010;
+        PCWrite = 1'b1;
         state = ST_fetch;
       end
-    end
 
-    ST_OF_1: begin
-      ALUSrcA = 1'b0;
-      ALUOp = 3'b000;
-      state = ST_OF_2;
-    end
-
-    ST_OF_2: begin
-      IorD = 3'b011;
-      MemRead = 1'b1;
-      PCSource = 3'b010;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-    end
-
-    ST_mult: begin
-      DIV/MULT_control = 1'b1;
-      //Wait 32
-      state = ST_fetch;
-    end
-
-    ST_div: begin
-      DIV/MULT_control = 1'b0;
-      if (ZERO == 1'b1) begin
-        state = ST_DIV0_1;
-      end
-      else begin
+      ST_mult: begin
+        DIVMULT_control = 1'b1;
+        //Wait 32
         state = ST_fetch;
       end
-    end
 
-    ST_DIV0_1: begin
-      ALUSrcA = 1'b0;
-      ALUOp = 3'b000;
-      state = ST_DIV0_2;
-    end
-
-    ST_DIV0_2: begin
-      IorD = 3'b100;
-      MemRead = 1'b1;
-      MemWrite = 1'b0;
-      PCSource = 3'b010;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-    end
-
-    ST_mfhi: begin
-      MemToReg = 3'b010;
-      state = ST_RegWrite_2;
-    end
-
-    ST_mflo: begin
-      MemToReg = 3'b011;
-      state = ST_RegWrite_2;
-    end
-
-    ST_RegWrite_2: begin
-      RegDst = 1'b0;
-      RegWrite = 1'b1;
-      state = ST_fetch;
-    end
-
-    ST_MemAddress_calc: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b01;
-      ALUOp = 3'b001;
-      if (opcode == OP_lb || opcode == OP_lh || opcode == OP_lw) begin
-        state = ST_load;
+      ST_div: begin
+        DIVMULT_control = 1'b0;
+        if (ZERO == 1'b1) begin
+          state = ST_DIV0_1;
+        end
+        else begin
+          state = ST_fetch;
+        end
       end
-      else if (opcode == OP_sb) begin
-        state = ST_sb;
+
+      ST_DIV0_1: begin
+        ALUSrcA = 1'b0;
+        ALUOp = 3'b000;
+        state = ST_DIV0_2;
       end
-      else if (opcode == OP_sh) begin
-        state = ST_sh;
+
+      ST_DIV0_2: begin
+        IorD = 3'b100;
+        MemRead = 1'b1;
+        MemWrite = 1'b0;
+        PCSource = 3'b010;
+        PCWrite = 1'b1;
+        state = ST_fetch;
       end
-      else begin
-        state = ST_sw;
+
+      ST_mfhi: begin
+        MemToReg = 3'b010;
+        state = ST_RegWrite_2;
       end
-    end
 
-    ST_load: begin
-      MemRead = 1'b1;
-      IorD = 3'b001;
-      if (opcode == OP_lb) begin
-        state = ST_lb;
+      ST_mflo: begin
+        MemToReg = 3'b011;
+        state = ST_RegWrite_2;
       end
-      else if (opcode == OP_lh) begin
-        state = ST_lh;
+
+      ST_RegWrite_2: begin
+        RegDst = 1'b0;
+        RegWrite = 1'b1;
+        state = ST_fetch;
       end
-      else begin
-        state = ST_lw;
+
+      ST_MemAddress_calc: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b01;
+        ALUOp = 3'b001;
+        if (opcode == OP_lb || opcode == OP_lh || opcode == OP_lw) begin
+          state = ST_load;
+        end
+        else if (opcode == OP_sb) begin
+          state = ST_sb;
+        end
+        else if (opcode == OP_sh) begin
+          state = ST_sh;
+        end
+        else begin
+          state = ST_sw;
+        end
       end
-    end
 
-    ST_lb: begin
-      RegDst = 2'b00;
-      RegWrite = 1'b1;
-      MemToReg = 3'b101;
-      LSControl = 1'b0;
-      LSControlSignal = 2'b01;
-      state = ST_fetch;
-    end
-
-    ST_lh: begin
-      RegDst = 2'b00;
-      RegWrite = 1'b1;
-      MemToReg = 3'b101;
-      LSControl = 1'b0;
-      LSControlSignal = 2'b10;
-      state = ST_fetch;
-    end
-
-    ST_lw: begin
-      RegDst = 2'b00;
-      RegWrite = 1'b1;
-      MemToReg = 3'b101;
-      LSControl = 1'b0;
-      LSControlSignal = 2'b11;
-      state = ST_fetch;
-    end
-
-    ST_sb: begin
-      MemWrite = 1'b1;
-      IorD = 3'b001;
-      LSControl = 1'b1;
-      MemData = 1'b1;
-      LSControlSignal = 2'b01;
-      state = ST_fetch;
-    end
-
-    ST_sh: begin
-      MemWrite = 1'b1;
-      IorD = 3'b001;
-      LSControl = 1'b1;
-      MemData = 1'b1;
-      LSControlSignal = 2'b10;
-      state = ST_fetch;
-    end
-
-    ST_sw: begin
-      MemWrite = 1'b1;
-      IorD = 3'b001;
-      LSControl = 1'b1;
-      MemData = 1'b1;
-      LSControlSignal = 2'b11;
-      state = ST_fetch
-    end
-
-    ST_shift_var: begin
-      InputShift = 1'b0;
-      NumberShift = 1'b0;
-      ShiftControl = 3'b001;
-      if (opcode == OP_sllv) begin
-        state = ST_sll_sllv;
+      ST_load: begin
+        MemRead = 1'b1;
+        IorD = 3'b001;
+        if (opcode == OP_lb) begin
+          state = ST_lb;
+        end
+        else if (opcode == OP_lh) begin
+          state = ST_lh;
+        end
+        else begin
+          state = ST_lw;
+        end
       end
-      else begin
-        state = ST_sra_srav;
+
+      ST_lb: begin
+        RegDst = 2'b00;
+        RegWrite = 1'b1;
+        MemToReg = 3'b101;
+        LSControl = 1'b0;
+        LSControlSignal = 2'b01;
+        state = ST_fetch;
       end
-		end
 
-    ST_shift_imm: begin
-      InputShift = 1'b1;
-      NumberShift = 1'b1;
-      ShiftControl = 3'b001;
-      if (opcode == OP_sll) begin
-        state = ST_sll_sllv;
+      ST_lh: begin
+        RegDst = 2'b00;
+        RegWrite = 1'b1;
+        MemToReg = 3'b101;
+        LSControl = 1'b0;
+        LSControlSignal = 2'b10;
+        state = ST_fetch;
       end
-      else if (opcode == OP_srl) begin
-        state = ST_srl;
+
+      ST_lw: begin
+        RegDst = 2'b00;
+        RegWrite = 1'b1;
+        MemToReg = 3'b101;
+        LSControl = 1'b0;
+        LSControlSignal = 2'b11;
+        state = ST_fetch;
       end
-      else begin
-        state = ST_sra_srav;
+
+      ST_sb: begin
+        MemWrite = 1'b1;
+        IorD = 3'b001;
+        LSControl = 1'b1;
+        MemData = 1'b1;
+        LSControlSignal = 2'b01;
+        state = ST_fetch;
       end
-		end
 
-    ST_sll_sllv: begin
-      ShiftControl = 3'b010;
-      state = ST_MemToReg;
-    end
+      ST_sh: begin
+        MemWrite = 1'b1;
+        IorD = 3'b001;
+        LSControl = 1'b1;
+        MemData = 1'b1;
+        LSControlSignal = 2'b10;
+        state = ST_fetch;
+      end
 
-    ST_srl: begin
-      ShiftControl = 3'b011;
-      state = ST_MemToReg;
-    end
+      ST_sw: begin
+        MemWrite = 1'b1;
+        IorD = 3'b001;
+        LSControl = 1'b1;
+        MemData = 1'b1;
+        LSControlSignal = 2'b11;
+        state = ST_fetch;
+      end
 
-    ST_sra_srav: begin
-      ShiftControl = 3'b100;
-      state = ST_MemToReg;
-    end
+      ST_shift_var: begin
+        InputShift = 1'b0;
+        NumberShift = 1'b0;
+        ShiftControl = 3'b001;
+        if (opcode == OP_sllv) begin
+          state = ST_sll_sllv;
+        end
+        else begin
+          state = ST_sra_srav;
+        end
+      end
 
-    ST_MemToReg: begin
-      MemToReg = 3'b100;
-      RegDst = 2'b01;
-      state = ST_fetch;
-    end
+      ST_shift_imm: begin
+        InputShift = 1'b1;
+        NumberShift = 1'b1;
+        ShiftControl = 3'b001;
+        if (opcode == OP_sll) begin
+          state = ST_sll_sllv;
+        end
+        else if (opcode == OP_srl) begin
+          state = ST_srl;
+        end
+        else begin
+          state = ST_sra_srav;
+        end
+      end
 
-    ST_slt: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b111;
-      state = ST_RegWrite_3;
-    end
+      ST_sll_sllv: begin
+        ShiftControl = 3'b010;
+        state = ST_MemToReg;
+      end
 
-    ST_slti: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b01;
-      ALUOp = 3'b111;
-      state = ST_RegWrite_3;
-    end
+      ST_srl: begin
+        ShiftControl = 3'b011;
+        state = ST_MemToReg;
+      end
 
-    ST_RegWrite_3: begin
-      RegDst = 2'b01;
-      RegWrite = 'b1;
-      MemToReg = 3'b000;
-      state = ST_fetch;
-    end
+      ST_sra_srav: begin
+        ShiftControl = 3'b100;
+        state = ST_MemToReg;
+      end
 
-    ST_bne: begin
-      PCWriteCond = 1'b1;
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b111;
-      PCSource = 3'b011;
-      CondControl = 2'b00;
-      state = ST_fetch;
-		end
+      ST_MemToReg: begin
+        MemToReg = 3'b100;
+        RegDst = 2'b01;
+        state = ST_fetch;
+      end
 
-    ST_beq: begin
-      PCWriteCond = 1'b1;
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b111;
-      PCSource = 3'b011;
-      CondControl = 2'b01;
-      state = ST_fetch;
-		end
+      ST_slt: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b111;
+        state = ST_RegWrite_3;
+      end
 
-    ST_ble: begin
-      PCWriteCond = 1'b1;
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b111;
-      PCSource = 3'b011;
-      CondControl = 2'b10;
-      state = ST_fetch;
-		end
+      ST_slti: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b01;
+        ALUOp = 3'b111;
+        state = ST_RegWrite_3;
+      end
 
-    ST_bne: begin
-      PCWriteCond = 1'b1;
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b00;
-      ALUOp = 3'b111;
-      PCSource = 3'b011;
-      CondControl = 2'b11;
-      state = ST_fetch;
-		end
+      ST_RegWrite_3: begin
+        RegDst = 2'b01;
+        RegWrite = 'b1;
+        MemToReg = 3'b000;
+        state = ST_fetch;
+      end
 
-    ST_jal: begin
-      ALUSrcA = 1'b0;
-      ALUSrcB = 2'b11;
-      ALUOp = 3'b001;
-      state = ST_MemToReg_31;
-    end
+      ST_bne: begin
+        PCWriteCond = 1'b1;
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b111;
+        PCSource = 3'b011;
+        CondControl = 2'b00;
+        state = ST_fetch;
+      end
 
-    ST_MemToReg_31: begin
-      MemToReg = 3'b000;
-      RegDst = 2'b11;
-      state = ST_j;
-    end
+      ST_beq: begin
+        PCWriteCond = 1'b1;
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b111;
+        PCSource = 3'b011;
+        CondControl = 2'b01;
+        state = ST_fetch;
+      end
 
-    ST_j: begin
-      PCSource = 3'b001;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_ble: begin
+        PCWriteCond = 1'b1;
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b111;
+        PCSource = 3'b011;
+        CondControl = 2'b10;
+        state = ST_fetch;
+      end
 
-    ST_jr: begin
-      ALUSrcA = 1'b1;
-      ALUOp = 3'b000;
-      state = ST_address_to_PC;
-    end
+      ST_bne: begin
+        PCWriteCond = 1'b1;
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b00;
+        ALUOp = 3'b111;
+        PCSource = 3'b011;
+        CondControl = 2'b11;
+        state = ST_fetch;
+      end
 
-    ST_address_to_PC: begin
-      PCSource = 3'b011;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-		end
+      ST_jal: begin
+        ALUSrcA = 1'b0;
+        ALUSrcB = 2'b11;
+        ALUOp = 3'b001;
+        state = ST_MemToReg_31;
+      end
 
-    ST_lui: begin
-      RegDst = 2'b00;
-      MemToReg = 3'b110;
-      RegWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_MemToReg_31: begin
+        MemToReg = 3'b000;
+        RegDst = 2'b11;
+        state = ST_j;
+      end
 
-    ST_Rte: begin
-      PCSource = 3'b100;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_j: begin
+        PCSource = 3'b001;
+        PCWrite = 1'b1;
+        state = ST_fetch;
+      end
 
-    ST_break: begin
-      ALUSrcA = 1'b0;
-      ALUOp = 3'b000;
-      PCSource = 3'b000;
-      PCWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_jr: begin
+        ALUSrcA = 1'b1;
+        ALUOp = 3'b000;
+        state = ST_address_to_PC;
+      end
 
-    ST_Push: begin
-      RegReadOne = 2'b01;
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b01;
-      ALUOp = 3'b010;
-      state = ST_mem_access;
-    end
+      ST_address_to_PC: begin
+        PCSource = 3'b011;
+        PCWrite = 1'b1;
+        state = ST_fetch;
+      end
 
-    ST_mem_access: begin
-      IorD = 3'b001;
-      LSControl = 1'b1;
-      LSControlSignal = 2'b11;
-      MemData = 1'b0;
-      MemWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_lui: begin
+        RegDst = 2'b00;
+        MemToReg = 3'b110;
+        RegWrite = 1'b1;
+        state = ST_fetch;
+      end
 
-    ST_Pop: begin
-      RegReadOne = 2'b01;
-      ALUSrcA = 1'b1;
-      ALUOp = 3'b000;
-      IorD = 3'b001;
-      MemRead = 1'b1;
-      state = ST_RegWrite_4;
-    end
+      ST_Rte: begin
+        PCSource = 3'b100;
+        PCWrite = 1'b1;
+        state = ST_fetch;
+      end
 
-    ST_RegWrite_4: begin
-      LSControl = 1'b0;
-      MemToReg = 3'b101;
-      RegDst = 2'b00;
-      RegWrite = 1'b1;
-      LSControlSignal = 2'b11;
-      state = ST_SP_plus_4;
-    end
+      ST_break: begin
+        ALUSrcA = 1'b0;
+        ALUOp = 3'b000;
+        PCSource = 3'b000;
+        PCWrite = 1'b1;
+        state = ST_fetch;
+      end
 
-    ST_SP_plus_4: begin
-      ALUSrcA = 1'b1;
-      ALUSrcB = 2'b11;
-      ALUOp = 3'b001;
-      state = ST_MemToReg_29;
-    end
+      ST_Push: begin
+        RegReadOne = 2'b01;
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b01;
+        ALUOp = 3'b010;
+        state = ST_mem_access;
+      end
 
-    ST_MemToReg_29: begin
-      MemToReg = 3'b000;
-      RegDst = 2'b10;
-      RegWrite = 1'b1;
-      state = ST_fetch;
-    end
+      ST_mem_access: begin
+        IorD = 3'b001;
+        LSControl = 1'b1;
+        LSControlSignal = 2'b11;
+        MemData = 1'b0;
+        MemWrite = 1'b1;
+        state = ST_fetch;
+      end
+
+      ST_Pop: begin
+        RegReadOne = 2'b01;
+        ALUSrcA = 1'b1;
+        ALUOp = 3'b000;
+        IorD = 3'b001;
+        MemRead = 1'b1;
+        state = ST_RegWrite_4;
+      end
+
+      ST_RegWrite_4: begin
+        LSControl = 1'b0;
+        MemToReg = 3'b101;
+        RegDst = 2'b00;
+        RegWrite = 1'b1;
+        LSControlSignal = 2'b11;
+        state = ST_SP_plus_4;
+      end
+
+      ST_SP_plus_4: begin
+        ALUSrcA = 1'b1;
+        ALUSrcB = 2'b11;
+        ALUOp = 3'b001;
+        state = ST_MemToReg_29;
+      end
+
+      ST_MemToReg_29: begin
+        MemToReg = 3'b000;
+        RegDst = 2'b10;
+        RegWrite = 1'b1;
+        state = ST_fetch;
+      end
+    endcase
   end
 end
 endmodule
