@@ -1,5 +1,5 @@
 module shift_left_2_PC (
-  input wire [25:0] data_in; //veio de instruction[25:0]
+  input wire [25:0] data_in; //veio de Instr20_16 com Instr15_0 do Instr_Reg
   output wire [28:0] data_out; //vai para jump_address_31_0 do mux_pcsource
 );
 
