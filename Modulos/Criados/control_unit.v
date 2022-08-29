@@ -65,23 +65,23 @@ module control_unit (
   parameter OP_type_r = 6'h0;
     //Funct Parameters
     parameter FUN_add = 6'h20;
-  	parameter FUN_and = 6'h24;
-  	parameter FUN_div = 6'h1A;
-  	parameter FUN_mult = 6'h18;
-  	parameter FUN_jr = 6'h8;
-		parameter FUN_mfhi = 6'h10;
-  	parameter FUN_mflo = 6'h12;
-  	parameter FUN_sll = 6'h0;
-  	parameter FUN_sllv = 6'h4;
-  	parameter FUN_slt = 6'h2A;
-  	parameter FUN_sra = 6'h3;
-  	parameter FUN_srav = 6'h7;
-  	parameter FUN_srl = 6'h2;
-  	parameter FUN_sub = 6'h22;
-  	parameter FUN_break = 6'hD;
-  	parameter FUN_Rte = 6'h13;
-  	parameter FUN_Push = 6'h5;
-  	parameter FUN_Pop = 6'h6;
+    parameter FUN_and = 6'h24;
+    parameter FUN_div = 6'h1A;
+    parameter FUN_mult = 6'h18;
+    parameter FUN_jr = 6'h8;
+    parameter FUN_mfhi = 6'h10;
+    parameter FUN_mflo = 6'h12;
+    parameter FUN_sll = 6'h0;
+    parameter FUN_sllv = 6'h4;
+    parameter FUN_slt = 6'h2A;
+    parameter FUN_sra = 6'h3;
+    parameter FUN_srav = 6'h7;
+    parameter FUN_srl = 6'h2;
+    parameter FUN_sub = 6'h22;
+    parameter FUN_break = 6'hD;
+    parameter FUN_Rte = 6'h13;
+    parameter FUN_Push = 6'h5;
+    parameter FUN_Pop = 6'h6;
 
   //Type I
   parameter OP_addi = 6'h8;
@@ -104,7 +104,7 @@ module control_unit (
   parameter OP_jal = 6'h3;
 
 //States
-	//basics
+  //basics
   parameter ST_reset = 6'd0;
   parameter ST_fetch = 6'd1;
   parameter ST_waiting = 6'd2;
@@ -114,30 +114,30 @@ module control_unit (
   parameter ST_IOP_1 = 6'd4;
   parameter ST_IOP_2 = 6'd5;
 
-	//and, add, addi, addiu, sub
+  //and, add, addi, addiu, sub
   parameter ST_and = 6'd6;
   parameter ST_add = 6'd7;
   parameter ST_addi = 6'd8;
   parameter ST_addiu = 6'd9;
   parameter ST_sub = 6'd10;
   parameter ST_RegWrite_1 = 6'd11;
-  	//OverFlow
-		parameter ST_OF_1 = 6'd12;
-		parameter ST_OF_2 = 6'd13;
+    //OverFlow
+    parameter ST_OF_1 = 6'd12;
+    parameter ST_OF_2 = 6'd13;
 
-	//mult, div
+  //mult, div
   parameter ST_mult = 6'd14;
   parameter ST_div = 6'd15;
-  	//DIVision by 0
-		parameter ST_DIV0_1 = 6'd16;
-		parameter ST_DIV0_2 = 6'd17;
+    //DIVision by 0
+    parameter ST_DIV0_1 = 6'd16;
+    parameter ST_DIV0_2 = 6'd17;
 
-	//mfhi, mflo
+  //mfhi, mflo
   parameter ST_mfhi = 6'd18;
   parameter ST_mflo = 6'd19;
   parameter ST_RegWrite_2 = 6'd20;
 
-	//loads, stores
+  //loads, stores
   parameter ST_MemAddress_calc = 6'd21;
   parameter ST_load = 6'd22;
   parameter ST_lb = 6'd23;
@@ -147,7 +147,7 @@ module control_unit (
   parameter ST_sh = 6'd27;
   parameter ST_sw = 6'd28;
 
-	//shifts
+  //shifts
   parameter ST_shift_var = 6'd29;
   parameter ST_shift_imm = 6'd30;
   parameter ST_sll_sllv = 6'd31;
@@ -155,30 +155,30 @@ module control_unit (
   parameter ST_sra_srav = 6'd33;
   parameter ST_MemToReg = 6'd34;
 
-	//slt, slti
+  //slt, slti
   parameter ST_slt = 6'd35;
   parameter ST_slti = 6'd36;
   parameter ST_RegWrite_3 = 6'd37;
 
-	//branches
+  //branches
   parameter ST_bne = 6'd38;
   parameter ST_beq = 6'd39;
   parameter ST_ble = 6'd40;
   parameter ST_bgt = 6'd41;
 
-	//jumps
+  //jumps
   parameter ST_jal = 6'd42;
   parameter ST_MemToReg_31 = 5'd43;
   parameter ST_j = 6'd44;
   parameter ST_jr = 6'd45;
   parameter ST_address_to_PC = 6'd46;
 
-	//lui, rte, break
+  //lui, rte, break
   parameter ST_lui = 6'd47;
   parameter ST_Rte = 6'd48;
   parameter ST_break = 6'd49;
 
-	//stack  
+  //stack  
   parameter ST_Push = 6'd50;
   parameter ST_RegWrite_Push = 6'd51;
   parameter ST_RegWrite_Push = 6'd52;
@@ -190,7 +190,7 @@ module control_unit (
   parameter ST_MemToReg_29 = 6'd58;
 
 //For Mult waiting cylces only
-	reg [31:0] mult_count;
+  reg [31:0] mult_count;
 
 initial begin
   reset_out = 1'b1;
@@ -772,7 +772,7 @@ always @(posedge clk) begin
         state = ST_mem_access;
       end
 
-			ST_RegWrite_Push: begin
+      ST_RegWrite_Push: begin
       	LTout = 1'b0;
         MemToReg = 3'b000;
         RegDst = 2'b10;
