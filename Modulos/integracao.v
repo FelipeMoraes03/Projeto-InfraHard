@@ -24,7 +24,6 @@
 
 module integracao (
     input wire clk, reset,
-    output wire Q2
 );
 
 
@@ -316,7 +315,8 @@ module integracao (
 
     mux_pcsource mux_pcsource (
         .aluResult(output_aluout),
-        .jump_address_31_0(jump_address_31_0),
+        .PC(output_PC),
+        .output_shift_left_2(output_shift_left_2);
         .memData(output_memory),
         .aluOut(output_aluout),
         .epc(output_epc),
