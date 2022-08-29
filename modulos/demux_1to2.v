@@ -4,10 +4,10 @@ module demux_1to2(input wire [31:0] a,
                  output reg [31:0] out_2
                  );
 
-always@(*) begin
+always@() begin
     case (sel)
-      1'b0: out_1 = a;
-      1'b1: out_2 = a;
+      1'b0 out_1 = a;
+      1'b1 out_2 = a;
     endcase
   end
 endmodule
