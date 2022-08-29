@@ -12,49 +12,51 @@ module control_unit (
 
 //Control Signals
   //PC
-  output wire PCWriteCond,
-  output wire PCWrite,
+  output reg PCWriteCond,
+  output reg PCWrite,
+  output reg CondControl,
 
   //Memory
-  output wire MemRead,
-  output wire MemWrite,
+  output reg MemRead,
+  output reg MemWrite,
 
   //Instruction Register
-  output wire IRWrite,
+  output reg IRWrite,
 
   //Registers
-  output wire RegWrite,
+  output reg RegWrite,
 
   //ALU
-  output wire [2:0] ALUOp,
+  output reg [2:0] ALUOp,
 
   //Register Shift
-  output wire [2:0] ShiftControl,
+  output reg [2:0] ShiftControl,
 
   //DIV/MULT
-  output wire DIVMULT_Control,
+  output reg DIVMULT_control,
 
   //LS Control
-  output wire [1:0] LSControlSignal,
+  output reg [1:0] LSControlSignal,
 
   //MUX
-  output wire [2:0] IorD,
-  output wire [1:0] RegReadOne,
-  output wire [1:0] RegDst,
-  output wire [2:0] MemToReg,
-  output wire MemData,
-  output wire ALUSrcA,
-  output wire [1:0] ALUSrcB,
-  output wire InputShift,
-  output wire NumberShift,
-  output wire LSControl,
-  output wire [2:0] PCSource,
+  output reg [2:0] IorD,
+  output reg [1:0] RegReadOne,
+  output reg [1:0] RegDst,
+  output reg [2:0] MemToReg,
+  output reg MemData,
+  output reg ALUSrcA,
+  output reg [1:0] ALUSrcB,
+  output reg InputShift,
+  output reg NumberShift,
+  output reg LSControl,
+  output reg [2:0] PCSource,
 
 //Reset
   input wire reset_in,
-  output wire reset_out
+  output reg reset_out
 );
 
+//Current FSM state
   reg [5:0] state;
   
 //Opcode Parameters
@@ -101,83 +103,90 @@ module control_unit (
   parameter OP_jal = 6'h3;
 
 //States
+	//basics
   parameter ST_reset = 6'd0;
   parameter ST_fetch = 6'd1;
   parameter ST_waiting = 6'd2;
   parameter ST_decode = 6'd3;
-  
-  parameter ST_IOP = 6'd4; //Invalid OPcode;
-  
-  parameter ST_and = 6'd5;
-  parameter ST_add = 6'd6;
-  parameter ST_addi = 6'd7;
-  parameter ST_addiu = 6'd8;
-  parameter ST_sub = 6'd9;
-  parameter ST_RegWrite_1 = 6'd10;
-  parameter ST_OF_1 = 6'd11; //OverFlow
-  parameter ST_OF_2 = 6'd12;
 
-  parameter ST_mult = 6'd13;
-  parameter ST_div = 6'd14;
-  parameter ST_DIV0_1 = 6'd15; //DIVision by 0
-  parameter ST_DIV0_2 = 6'd16;
+  //Invalid OPcode
+  parameter ST_IOP_1 = 6'd4;
+  parameter ST_IOP_2 = 6'd5;
 
-  parameter ST_mfhi = 6'd17;
-  parameter ST_mflo = 6'd18;
-  parameter ST_RegWrite_2 = 6'd19;
+	//and, add, addi, addiu, sub
+  parameter ST_and = 6'd6;
+  parameter ST_add = 6'd7;
+  parameter ST_addi = 6'd8;
+  parameter ST_addiu = 6'd9;
+  parameter ST_sub = 6'd10;
+  parameter ST_RegWrite_1 = 6'd11;
+  	//OverFlow
+		parameter ST_OF_1 = 6'd12;
+		parameter ST_OF_2 = 6'd13;
 
-  parameter ST_MemAddress_calc = 6'd20;
-  parameter ST_load = 6'd21;
-  parameter ST_lb = 6'd22;
-  parameter ST_lh = 6'd23;
-  parameter ST_lw = 6'd24;
-  parameter ST_sb = 6'd25;
-  parameter ST_sh = 6'd26;
-  parameter ST_sw = 6'd27;
+	//mult, div
+  parameter ST_mult = 6'd14;
+  parameter ST_div = 6'd15;
+  	//DIVision by 0
+		parameter ST_DIV0_1 = 6'd16;
+		parameter ST_DIV0_2 = 6'd17;
 
-  parameter ST_shift_var = 6'd28;
-  parameter ST_shift_imm = 6'd29;
-  parameter ST_sll_sllv = 6'd30;
-  parameter ST_srl = 6'd31;
-  parameter ST_sra_srav = 6'd32;
-  parameter ST_MemToReg = 6'd33;
+	//mfhi, mflo
+  parameter ST_mfhi = 6'd18;
+  parameter ST_mflo = 6'd19;
+  parameter ST_RegWrite_2 = 6'd20;
 
-  parameter ST_slt = 6'd34;
-  parameter ST_slti = 6'd35;
-  parameter ST_RegWrite_3 = 6'd36;
+	//loads, stores
+  parameter ST_MemAddress_calc = 6'd21;
+  parameter ST_load = 6'd22;
+  parameter ST_lb = 6'd23;
+  parameter ST_lh = 6'd24;
+  parameter ST_lw = 6'd25;
+  parameter ST_sb = 6'd26;
+  parameter ST_sh = 6'd27;
+  parameter ST_sw = 6'd28;
 
-  parameter ST_bne = 6'd37;
-  parameter ST_beq = 6'd38;
-  parameter ST_ble = 6'd39;
-  parameter ST_bgt = 6'd40;
+	//shifts
+  parameter ST_shift_var = 6'd29;
+  parameter ST_shift_imm = 6'd30;
+  parameter ST_sll_sllv = 6'd31;
+  parameter ST_srl = 6'd32;
+  parameter ST_sra_srav = 6'd33;
+  parameter ST_MemToReg = 6'd34;
 
-  parameter ST_jal = 6'd41;
-  parameter ST_MemToReg_31 = 5'd42;
-  parameter ST_j = 6'd43;
-  parameter ST_jr = 6'd44;
-  parameter ST_address_to_PC = 6'd45;
+	//slt, slti
+  parameter ST_slt = 6'd35;
+  parameter ST_slti = 6'd36;
+  parameter ST_RegWrite_3 = 6'd37;
 
-  parameter ST_lui = 6'd46;
-  parameter ST_Rte = 6'd47;
-  parameter ST_break = 6'd48;
-  
-  parameter ST_Push = 6'd49;
-  parameter ST_mem_access = 6'd50;
-  parameter ST_Pop = 6'd51;
-  parameter ST_RegWrite_4 = 6'd52;
-  parameter ST_SP_plus_4 = 6'd53;
-  parameter ST_MemToReg_29 = 6'd54;
+	//branches
+  parameter ST_bne = 6'd38;
+  parameter ST_beq = 6'd39;
+  parameter ST_ble = 6'd40;
+  parameter ST_bgt = 6'd41;
 
-	reg [31:0] count;
-	
-always @(posedge clk) begin
-	if (reset_in == 1'b1) begin
-		count = 0;
-	end
-	else begin
-		count = count + 1;
-	end
-end
+	//jumps
+  parameter ST_jal = 6'd42;
+  parameter ST_MemToReg_31 = 5'd43;
+  parameter ST_j = 6'd44;
+  parameter ST_jr = 6'd45;
+  parameter ST_address_to_PC = 6'd46;
+
+	//lui, rte, break
+  parameter ST_lui = 6'd47;
+  parameter ST_Rte = 6'd48;
+  parameter ST_break = 6'd49;
+
+	//stack  
+  parameter ST_Push = 6'd50;
+  parameter ST_mem_access = 6'd51;
+  parameter ST_Pop = 6'd52;
+  parameter ST_RegWrite_4 = 6'd53;
+  parameter ST_SP_plus_4 = 6'd54;
+  parameter ST_MemToReg_29 = 6'd55;
+
+//For Mult waiting cylces only
+	reg [31:0] mult_count;
 
 initial begin
   reset_out = 1'b1;
@@ -189,6 +198,7 @@ always @(posedge clk) begin
     MemToReg = 3'b111;
     RegWrite = 1'b1;
     reset_out = 1'b0;
+    mult_count = 32'd0;
     state = ST_fetch;
   end
   else begin
@@ -206,7 +216,6 @@ always @(posedge clk) begin
       end
 
       ST_waiting: begin
-      	
         state = ST_decode;
       end
 
@@ -260,7 +269,7 @@ always @(posedge clk) begin
               end
 
               FUN_sra: begin
-                state = ST_shit_imm;
+                state = ST_shift_imm;
               end
 
               FUN_srav: begin
@@ -361,14 +370,24 @@ always @(posedge clk) begin
           end
 
           default: begin
-            state = ST_IOP;
+            state = ST_IOP_1;
           end
         endcase
       end
   
-      ST_IOP: begin
-        /*some code*/
+      ST_IOP_1: begin
+        ALUSrcA = 1'b0;
+        ALUOp = 3'b000;
+        state = ST_IOP_2;
       end
+      
+      ST_IOP_2: begin
+      	IorD = 3'b010;
+        MemRead = 1'b1;
+        PCSource = 3'b010;
+        PCWrite = 1'b1;
+        state = ST_fetch;
+       end
 
       ST_and: begin
         ALUSrcA = 1'b1;
@@ -434,7 +453,13 @@ always @(posedge clk) begin
       ST_mult: begin
         DIVMULT_control = 1'b1;
         //Wait 32
-        state = ST_fetch;
+        if (mult_count >= 32'd32) begin
+        	mult_count = 32'd0;
+        	state = ST_fetch;
+        end
+        else begin
+        	mult_count = mult_count + 32'd1;
+        end
       end
 
       ST_div: begin
@@ -568,7 +593,7 @@ always @(posedge clk) begin
         InputShift = 1'b0;
         NumberShift = 1'b0;
         ShiftControl = 3'b001;
-        if (opcode == OP_sllv) begin
+        if (funct == FUN_sllv) begin
           state = ST_sll_sllv;
         end
         else begin
@@ -580,10 +605,10 @@ always @(posedge clk) begin
         InputShift = 1'b1;
         NumberShift = 1'b1;
         ShiftControl = 3'b001;
-        if (opcode == OP_sll) begin
+        if (funct == FUN_sll) begin
           state = ST_sll_sllv;
         end
-        else if (opcode == OP_srl) begin
+        else if (funct == FUN_srl) begin
           state = ST_srl;
         end
         else begin
