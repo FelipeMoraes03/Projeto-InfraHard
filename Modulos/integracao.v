@@ -29,8 +29,6 @@ module integracao (
     wire sel_memdata;
     wire sel_inputshift;
     wire sel_numbershift;
-    wire sel_lscontrol_signal;
-    wire sel_condcontrol;
     wire sel_memcontrol;
     wire sel_pcwrite;
     wire sel_pcwritecond;
@@ -49,14 +47,16 @@ module integracao (
 
     //Control wires 2 bits
     wire [1:0] sel_alusrb;
-    wire [1:0] sel_pcsource;
+    wire [1:0] sel_condcontrol;
     wire [1:0] sel_regdest;
+    wire [1:0] sel_lscontrol_signal;
+    wire [1:0] sel_reg_read_one;
     
     //Control wires 3bits
     wire [2:0] sel_aluop;
     wire [2:0] sel_memtoreg;
     wire [2:0] sel_iord;
-    wire [2:0] sel_reg_read_one;
+    wire [2:0] sel_pcsource;
     wire [2:0] sel_shiftcontrol;
 
     //Data Wires 1 bit
@@ -237,7 +237,7 @@ module integracao (
         .clock(clk),
         .reset(reset),
         .value(output_mux_information_lscontrol),
-        .instruction(output_mux_address_lscontrol),
+        .instruction(output_mux_addres_lscontrol),
         .control(sel_lscontrol_signal),
         .out(output_ls_control_block)
     );
@@ -286,8 +286,8 @@ module integracao (
     //Inputs
         .clk(clk),
         .reset_in(reset),
-        .opcode(input_opcode),
-        .funct(input_funct),
+        .opcode(output_instruction_31_26),
+        .funct(output_instruction_31_26[5:0]),
         .OF(overflow),
         .ZERO(zero),
 
@@ -389,7 +389,7 @@ module integracao (
 
     mux_numbershift mux_numbershift (
         .reg_B(output_regB),
-        .instruction_15_0(output_instruction_15_0),
+        .instruction_15_0(output_instruction_15_0[4:0]),
         .sel(sel_numbershift),
         .out(output_mux_numbershift)
     );
