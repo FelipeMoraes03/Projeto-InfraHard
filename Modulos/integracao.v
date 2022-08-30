@@ -23,7 +23,8 @@
 
 
 module integracao (
-    input wire clk// reset,
+    input wire clk,
+    input wire reset
 );
 
 
