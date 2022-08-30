@@ -340,9 +340,10 @@ module integracao (
             .NumberShift(sel_numbershift),
             .LSControl(sel_lscontrol),
             .PCSource(sel_pcsource),
-            .LTout(sel_ltout),
+            .LTout(sel_ltout)
+
         //RESET
-            .reset_out() //não sei
+            //.reset_out()
     );
 
     // Mux's
