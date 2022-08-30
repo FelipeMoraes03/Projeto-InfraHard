@@ -76,14 +76,14 @@ module mult_div (
                 Out = Out >>> 1;
                 Qres = a[i];
                 i = i + 1;
-                    
+
                 if (i == 32)
                 begin
                     if (b == 32'h8000_0000)								
                         begin
                         Out = - Out;
                     end
-                        
+
                     high = Out[63:32];
                     low = Out[31:0];
                     mult_end = 1;     
@@ -133,7 +133,7 @@ module mult_div (
                         begin
                             aux_a = a; 
                         end
-                        
+
                         //TRANSFORMAR DIVISOR EM POSITIVO
                         if (b[31])
                         begin
@@ -147,7 +147,7 @@ module mult_div (
                     end
                     div_start = 1'b1;
                 end
-            
+
                 //INอCIO DA DIVISรO
                 if (div_start)
                 begin
