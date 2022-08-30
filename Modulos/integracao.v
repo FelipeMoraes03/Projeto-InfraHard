@@ -23,7 +23,7 @@
 
 
 module integracao (
-    input wire clk,// reset,
+    input wire clk// reset,
 );
 
 
@@ -33,7 +33,6 @@ module integracao (
     wire sel_alusra;
     wire sel_regwrite;
     wire sel_ltout;
-    wire sel_lscontrol;
     wire sel_memdata;
     wire sel_inputshift;
     wire sel_numbershift;
@@ -42,13 +41,12 @@ module integracao (
     wire sel_memcontrol;
     wire sel_pcwrite;
     wire sel_pcwritecond;
-    wire sel_memcontrol;
     wire sel_irwrite;
     wire sel_div_mult;
 
     // Flags de load
-    wire output_alu;
-    wire output_PC;
+    wire load_alu;
+    wire load_PC;
     wire load_regA;
     wire load_regB;
     wire load_regHi;
@@ -326,7 +324,7 @@ module integracao (
             .LSControlSignal(sel_lscontrol_signal),
 
         //Div/Mult
-            .DIVMULT_control(sel_div_mult)
+            .DIVMULT_control(sel_div_mult),
 
         //MUX
             .IorD(sel_iord),
@@ -412,7 +410,7 @@ module integracao (
     mux_pcsource mux_pcsource (
         .aluResult(output_aluout),
         .PC(output_PC),
-        .output_shift_left_2(output_shift_left_2);
+        .output_shift_left_2(output_shift_left_2),
         .memData(output_memory),
         .aluOut(output_aluout),
         .epc(output_epc),
