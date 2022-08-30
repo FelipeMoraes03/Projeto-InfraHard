@@ -53,7 +53,7 @@ module control_unit (
   output reg LTout,
 
 //Reset
-  input wire reset_in,
+  input wire reset_in
   //output reg reset_out
 );
 
@@ -181,7 +181,7 @@ module control_unit (
   //stack  
   parameter ST_Push = 6'd50;
   parameter ST_RegWrite_Push = 6'd51;
-  parameter ST_RegWrite_Push = 6'd52;
+  //parameter ST_RegWrite_Push = 6'd52;
   parameter ST_MemAddressCalc_Push = 6'd53;
   parameter ST_mem_access = 6'd54;
   parameter ST_Pop = 6'd55;
