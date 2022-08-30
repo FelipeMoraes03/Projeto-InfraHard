@@ -98,7 +98,6 @@ module integracao (
     wire [31:0] memory_data_register;
     wire [31:0] output_sign_extend_16;
     wire [31:0] output_shift_left_2;
-//    wire [27:0] output_shift_left_2_PC;
     wire [31:0] output_mux_srb;
     wire [31:0] output_mux_pcsource;
     wire [31:0] jump_address_31_0;
@@ -376,7 +375,7 @@ module integracao (
     );
 
     mux_memtoreg mux_memtoreg (
-        .a(output_mux_ltout), //alterei aqui (output_aluout -> output_mux_ltout)
+        .a(output_aluout), 
         .b(memory_data_register), 
         .c(output_regHi), 
         .d(output_regLo), 
@@ -401,7 +400,6 @@ module integracao (
         .out(output_mux_inputshift)
     );
 
-    //precisa de alteração
     mux_pcsource mux_pcsource (
         .aluResult(output_aluout),
         .PC(output_PC),
@@ -412,16 +410,6 @@ module integracao (
         .sel(sel_pcsource),
         .out(output_mux_pcsource)
     );
-
-//    mux_pcsource mux_pcsource (
-//        .aluResult(output_aluout),
-//        .output_shift_left_2_PC({output_PC[31:28], output_shift_left_2_PC}),
-//        .memData(output_memory),
-//        .aluOut(output_aluout),
-//        .epc(output_epc),
-//        .sel(sel_pcsource),
-//        .out(output_mux_pcsource)
-//    );
 
     mux_regdest mux_regdest (
         .instruction_20_16(output_instruction_20_16),
@@ -479,15 +467,9 @@ module integracao (
         .data_out(output_shift_left_2)
     );
 
-//    shift_left_2_PC shift_left_2_PC (
-//    	.data_in({output_instruction_25_21, output_instruction_20_16, output_instruction_15_0}),
-//    	.data_out(output_shift_left_2_PC)
-//    );
-
     shift_left_16 shift_left_16 (
         .data_in(output_instruction_15_0),
         .data_out(output_shift_left_16)
     );
 
 endmodule
-
