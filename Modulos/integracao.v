@@ -9,7 +9,7 @@
 `include "Criados/mux_numbershift.v"
 `include "Criados/mux_pcsource.v"
 `include "Criados/mux_regdest.v"
-`include "Criados/regreadone.v"
+`include "Criados/mux_regreadone.v"
 `include "Criados/sign_extend_16.v"
 `include "Criados/zero_extend_1.v"
 `include "Criados/mux_condcontrol.v"
