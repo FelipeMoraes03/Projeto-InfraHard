@@ -7,8 +7,8 @@
 `include "Criados/mux_iord.v"
 `include "Criados/mux_memtoreg.v"
 `include "Criados/mux_numbershift.v"
-`include "Criados/pcsource.v"
-`include "Criados/regdest.v"
+`include "Criados/mux_pcsource.v"
+`include "Criados/mux_regdest.v"
 `include "Criados/regreadone.v"
 `include "Criados/sign_extend_16.v"
 `include "Criados/zero_extend_1.v"
@@ -23,7 +23,7 @@
 
 
 module integracao (
-    input wire clk, reset,
+    input wire clk,// reset,
 );
 
 
@@ -40,10 +40,25 @@ module integracao (
     wire sel_lscontrol_signal;
     wire sel_condcontrol;
     wire sel_memcontrol;
+    wire sel_pcwrite;
+    wire sel_pcwritecond;
+    wire sel_memcontrol;
+    wire sel_irwrite;
+    wire sel_div_mult;
+
+    // Flags de load
+    wire output_alu;
+    wire output_PC;
+    wire load_regA;
+    wire load_regB;
+    wire load_regHi;
+    wire load_regLo;
+    wire load_epc;
+    wire load_MDR;
 
     //Control wires 2 bits
     wire [1:0] sel_alusrb;
-    wire [1:0] sel_mux_pcsource;
+    wire [1:0] sel_pcsource;
     wire [1:0] sel_regdest;
     
     //Control wires 3bits
@@ -62,6 +77,8 @@ module integracao (
     wire [4:0] output_instruction_15_0;
     wire [4:0] output_instruction_20_16;
     wire [4:0] output_instruction_15_11;
+    wire [4:0] output_instruction_25_21;
+    wire [4:0] output_instruction_31_26;
     wire [4:0] output_mux_RegReadOne;
     wire [4:0] input_n;
     wire [4:0] output_mux_regdest;
@@ -116,7 +133,7 @@ module integracao (
     Registrador aluOut (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_aluout), 
         .Entrada(output_alu), 
         .Saida(output_aluout) 
     );
@@ -124,7 +141,7 @@ module integracao (
     Registrador PC (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_PC), 
         .Entrada(output_PCSource), 
         .Saida(output_PC)
     );
@@ -132,7 +149,7 @@ module integracao (
     Registrador A (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_regA), 
         .Entrada(input_a), 
         .Saida(output_regA) 
     );
@@ -140,7 +157,7 @@ module integracao (
     Registrador B (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_regB), 
         .Entrada(input_b), 
         .Saida(output_regB) 
     );
@@ -148,7 +165,7 @@ module integracao (
     Registrador Hi (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_regHi), 
         .Entrada(input_regHi), 
         .Saida(output_regHi) 
     );
@@ -156,7 +173,7 @@ module integracao (
     Registrador Lo (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_regLo), 
         .Entrada(input_regLo), 
         .Saida(output_regLo) 
     );
@@ -164,7 +181,7 @@ module integracao (
     Registrador epc (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_epc), 
         .Entrada(output_alu), 
         .Saida(output_epc) 
     );
@@ -172,12 +189,12 @@ module integracao (
     Registrador memoryDataRegister (
         .Clock(clk), 
         .Reset(reset), 
-        .Load(load), 
+        .Load(load_MDR), 
         .Entrada(output_memory), 
         .Saida(output_MDR) 
     );
 
-    // Blocos fornecidos
+    // Blocos Fornecidos
     alu32 alu (
         .A(output_mux_alusra),  
         .B(output_mux_alusrb), 
@@ -203,12 +220,24 @@ module integracao (
         .ReadData2(input_regB)
     );
 
+    //mudar essa parte do sel no controle
     Memoria memory (
         .Clock(clk),
         .Address(output_mux_iord), 
         .Wr(sel_memcontrol), 
         .Datain(output_mux_memdata), 
         .Dataout(output_memory) 
+    );
+
+    Instr_Reg IR(
+    .Clk(clk),
+    .Reset(reset),
+    .Load_ir(sel_irwrite),
+    .Entrada(output_memory),
+    .Instr31_26(output_instruction_31_26),
+    .Instr25_21(output_instruction_25_21),
+    .Instr20_16(output_instruction_20_16),
+    .Instr15_0(output_instruction_15_0)
     );
 
     // Blocos criados
@@ -230,7 +259,7 @@ module integracao (
         .Saida(output_regDeloc)
         
     );
-
+    /*
     mult mult (
         .M(output_regA),
         .Q(output_regB),
@@ -248,6 +277,73 @@ module integracao (
         .high(input_regHi), 
         .low(input_regLo),
         .div_zero(output_zero_div)
+    );*/
+
+    mult_div div_mult(
+        .clk(clk),
+        .mult_div_control(sel_div_mult),
+        .reset(reset),
+        .a(output_regA),
+        .b(output_regB),
+        .high(input_regHi),
+        .low(input_regLo),
+        .div_zero(output_zero_div)
+    );
+
+    control_unit Controlador(
+    //Inputs
+        .clk(clk),
+        .reset_in(reset),
+        .opcode(input_opcode),
+        .funct(input_funct),
+        .OF(overflow),
+        .ZERO(zero),
+
+    //Outputs
+        //PC
+            .PCWriteCond(sel_pcwritecond),
+            .PCWrite(sel_pcwrite),
+            .CondControl(sel_condcontrol),
+        
+        //Memory
+            //sel_memcontrol 
+            .MemRead(),
+            .MemWrite(),
+        
+        //Instruction Register
+            .IRWrite(sel_irwrite),
+
+        //Registers
+            .RegWrite(sel_regwrite),
+
+        //ALU
+            .ALUOp(sel_aluop),
+
+        //Register Shift
+            .ShiftControl(sel_shiftcontrol),
+
+        //LS Control
+            .LSControlSignal(sel_lscontrol_signal),
+
+        //Div/Mult
+            .DIVMULT_control(sel_div_mult)
+
+        //MUX
+            .IorD(sel_iord),
+            .RegReadOne(sel_reg_read_one),
+            .RegDst(sel_regdest),
+            .MemToReg(sel_memtoreg),
+            .MemData(sel_memdata),
+            .ALUSrcA(sel_alusra),
+            .ALUSrcB(sel_alusrb),
+            .InputShift(sel_inputshift),
+            .NumberShift(sel_numbershift),
+            .LSControl(sel_lscontrol),
+            .PCSource(sel_pcsource),
+            .LTout(sel_ltout)
+
+        //RESET
+            //.reset_out()
     );
 
     // Mux's
@@ -320,7 +416,7 @@ module integracao (
         .memData(output_memory),
         .aluOut(output_aluout),
         .epc(output_epc),
-        .sel(sel_mux_pcsource),
+        .sel(sel_pcsource),
         .out(output_mux_pcsource)
     );
 
@@ -371,7 +467,7 @@ module integracao (
     );
 
     sign_extend_16 sign_extend_16 (
-        .Data_in(instruction_15_0),
+        .Data_in(output_instruction_15_0),
         .Data_out(output_sign_extend_16)
     );
 
@@ -381,7 +477,7 @@ module integracao (
     );
 
     shift_left_16 shift_left_16 (
-        .data_in(instruction_15_0),
+        .data_in(output_instruction_15_0),
         .data_out(output_shift_left_16)
     );
 
