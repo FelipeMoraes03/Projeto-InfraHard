@@ -291,4 +291,21 @@ module cpu_add (
         .sel(sel_iord), 
         .out(output_mux_iord) 
     );
+
+    shift_left_2 shift_left_2 (
+        .data_in(output_sign_extend_16),
+        .data_out(output_shift_left_2)
+    );
+
+    mux_pcsource mux_pcsource (
+        .aluResult(output_aluout),
+        .PC(output_PC),
+        .output_shift_left_2(output_shift_left_2),
+        .memData(output_memory),
+        .aluOut(output_aluout),
+        .epc(output_epc),
+        .sel(sel_pcsource),
+        .out(output_mux_pcsource)
+    );
+
 endmodule
