@@ -17,8 +17,7 @@ module control_unit (
   output reg [1:0] CondControl,
 
   //Memory
-  output reg MemRead,
-  output reg MemWrite,
+  output reg MemControl, //MemRead -> MemControl = 0, MemWrite -> MemControl = 1
 
   //Instruction Register
   output reg IRWrite,
@@ -168,7 +167,7 @@ module control_unit (
 
   //jumps
   parameter ST_jal = 6'd42;
-  parameter ST_MemToReg_31 = 5'd43;
+  parameter ST_MemToReg_31 = 6'd43;
   parameter ST_j = 6'd44;
   parameter ST_jr = 6'd45;
   parameter ST_address_to_PC = 6'd46;
@@ -181,13 +180,12 @@ module control_unit (
   //stack  
   parameter ST_Push = 6'd50;
   parameter ST_RegWrite_Push = 6'd51;
-  //parameter ST_RegWrite_Push = 6'd52;
-  parameter ST_MemAddressCalc_Push = 6'd53;
-  parameter ST_mem_access = 6'd54;
-  parameter ST_Pop = 6'd55;
-  parameter ST_RegWrite_4 = 6'd56;
-  parameter ST_SP_plus_4 = 6'd57;
-  parameter ST_MemToReg_29 = 6'd58;
+  parameter ST_MemAddressCalc_Push = 6'd52;
+  parameter ST_mem_access = 6'd53;
+  parameter ST_Pop = 6'd54;
+  parameter ST_RegWrite_4 = 6'd55;
+  parameter ST_SP_plus_4 = 6'd56;
+  parameter ST_MemToReg_29 = 6'd57;
 
 //For Mult waiting cylces only
   reg [31:0] mult_count;
@@ -208,7 +206,7 @@ always @(posedge clk) begin
   else begin
     case (state)
       ST_fetch: begin
-        MemRead = 1'b1;
+      	MemControl = 1'b0;
         ALUSrcA = 1'b0;
         IorD = 3'b000;
         IRWrite = 1'b1;
@@ -387,7 +385,7 @@ always @(posedge clk) begin
       
       ST_IOP_2: begin
       	IorD = 3'b010;
-        MemRead = 1'b1;
+        MemControl = 1'b0;
         PCSource = 3'b010;
         PCWrite = 1'b1;
         LTout = 1'b0;
@@ -450,7 +448,7 @@ always @(posedge clk) begin
 
       ST_OF_2: begin
         IorD = 3'b011;
-        MemRead = 1'b1;
+        MemControl = 1'b0;
         PCSource = 3'b010;
         PCWrite = 1'b1;
         state = ST_fetch;
@@ -486,8 +484,7 @@ always @(posedge clk) begin
 
       ST_DIV0_2: begin
         IorD = 3'b100;
-        MemRead = 1'b1;
-        MemWrite = 1'b0;
+        MemControl = 1'b0;
         PCSource = 3'b010;
         PCWrite = 1'b1;
         state = ST_fetch;
@@ -530,7 +527,7 @@ always @(posedge clk) begin
       ST_load: begin
       	LTout = 1'b0;
       	IorD = 3'b001;
-        MemRead = 1'b1;
+        MemControl = 1'b0;
         if (opcode == OP_lb) begin
           state = ST_lb;
         end
@@ -575,7 +572,7 @@ always @(posedge clk) begin
         LSControl = 1'b1;
         LSControlSignal = 2'b01;
         MemData = 1'b1;
-        MemWrite = 1'b1;
+        MemControl = 1'b1;
         state = ST_fetch;
       end
 
@@ -585,7 +582,7 @@ always @(posedge clk) begin
         LSControl = 1'b1;
         LSControlSignal = 2'b10;
         MemData = 1'b1;
-        MemWrite = 1'b1;
+        MemControl = 1'b1;
         state = ST_fetch;
       end
 
@@ -595,7 +592,7 @@ always @(posedge clk) begin
         LSControl = 1'b1;
         LSControlSignal = 2'b11;
         MemData = 1'b1;
-        MemWrite = 1'b1;
+        MemControl = 1'b1;
         state = ST_fetch;
       end
 
@@ -794,7 +791,7 @@ always @(posedge clk) begin
         LSControl = 1'b1;
         LSControlSignal = 2'b11;
         MemData = 1'b0;
-        MemWrite = 1'b1;
+        MemControl = 1'b1;
         state = ST_fetch;
       end
 
@@ -804,7 +801,7 @@ always @(posedge clk) begin
         ALUOp = 3'b000;
         LTout = 1'b0;
         IorD = 3'b001;
-        MemRead = 1'b1;
+        MemControl = 1'b0;
         state = ST_RegWrite_4;
       end
 
@@ -834,3 +831,4 @@ always @(posedge clk) begin
   end
 end
 endmodule
+
