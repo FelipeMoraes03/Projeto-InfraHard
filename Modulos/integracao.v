@@ -65,11 +65,11 @@ module integracao (
 
     // Data Wires 5 bits
     wire [4:0] output_mux_numbershift;
-    wire [4:0] output_instruction_15_0;
+    wire [15:0] output_instruction_15_0;
     wire [4:0] output_instruction_20_16;
     wire [4:0] output_instruction_15_11;
     wire [4:0] output_instruction_25_21;
-    wire [4:0] output_instruction_31_26;
+    wire [5:0] output_instruction_31_26;
     wire [4:0] output_mux_RegReadOne;
     wire [4:0] input_n;
     wire [4:0] output_mux_regdest;
@@ -111,6 +111,7 @@ module integracao (
     wire [31:0] output_ls_control_block;
     wire [31:0] output_memory;
     wire [31:0] output_mux_memdata;
+    wire [31:0] output_epc;
 
     // Flags
     wire overflow;
@@ -122,7 +123,7 @@ module integracao (
 
     // Registers
     Registrador aluOut (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_aluout), 
         .Entrada(output_alu), 
@@ -130,7 +131,7 @@ module integracao (
     );
 
     Registrador PC (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_PC), 
         .Entrada(output_PCSource), 
@@ -138,7 +139,7 @@ module integracao (
     );
 
     Registrador A (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_regA), 
         .Entrada(input_a), 
@@ -146,7 +147,7 @@ module integracao (
     );
 
     Registrador B (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_regB), 
         .Entrada(input_b), 
@@ -154,7 +155,7 @@ module integracao (
     );
 
     Registrador Hi (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_regHi), 
         .Entrada(input_regHi), 
@@ -162,7 +163,7 @@ module integracao (
     );
 
     Registrador Lo (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_regLo), 
         .Entrada(input_regLo), 
@@ -170,7 +171,7 @@ module integracao (
     );
 
     Registrador epc (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_epc), 
         .Entrada(output_alu), 
@@ -178,7 +179,7 @@ module integracao (
     );
 
     Registrador memoryDataRegister (
-        .Clock(clk), 
+        .Clk(clk), 
         .Reset(reset), 
         .Load(load_MDR), 
         .Entrada(output_memory), 
@@ -186,7 +187,7 @@ module integracao (
     );
 
     // Blocos Fornecidos
-    alu32 alu (
+    ula32 alu (
         .A(output_mux_alusra),  
         .B(output_mux_alusrb), 
         .Seletor(sel_aluop), 
@@ -206,9 +207,9 @@ module integracao (
         .ReadReg1(output_mux_RegReadOne),
         .ReadReg2(output_instruction_20_16),
         .WriteReg(output_mux_regdest),
-        .WriteData(output_MemtoReg),
-        .ReadData1(input_regA),
-        .ReadData2(input_regB)
+        .WriteData(output_mux_memtoreg),
+        .ReadData1(input_a),
+        .ReadData2(input_b)
     );
 
     //mudar essa parte do sel no controle
@@ -247,7 +248,7 @@ module integracao (
         .Shift(sel_shiftcontrol),
         .N(output_mux_numbershift),
         .Entrada(output_mux_inputshift),
-        .Saida(output_regDeloc)
+        .Saida(output_register_shift)
         
     );
     /*
@@ -452,7 +453,7 @@ module integracao (
         .out_2(output_2_demux) 
     );
 
-    zero_extend_1 zero_extend_1 (
+    zero_extender_1 zero_extend_1 (
         .Data_in(menor),
         .Data_out(output_menor_extended)
     );
