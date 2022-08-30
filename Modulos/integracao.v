@@ -1,6 +1,5 @@
-`include "Criados/control_unit.v"
-`include "Criados/div.v"
-`include "Criados/mult.v"
+/*`include "Criados/control_unit.v"
+`include "Criados/mult_div.v"
 `include "Criados/demux_1to2.v"
 `include "Criados/mux_2to1.v"
 `include "Criados/mux_alusrb.v"
@@ -13,14 +12,7 @@
 `include "Criados/sign_extend_16.v"
 `include "Criados/zero_extender_1.v"
 `include "Criados/mux_condcontrol.v"
-
-`include "Fornecidos/Banco_reg.vhd"
-`include "Fornecidos/Instr_Reg.vhd"
-`include "Fornecidos/Memoria.vhd"
-`include "Fornecidos/RegDesloc.vhd"
-`include "Fornecidos/Registrador.vhd"
-`include "Fornecidos/ula32.vhd"
-
+*/
 
 module integracao (
     input wire clk,

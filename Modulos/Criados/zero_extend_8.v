@@ -3,6 +3,6 @@ module zero_extender_8 (
     output wire [31:0] Data_out
 );
 
-    assign Data_out = {{24{0'b1}},Data_in};
+    assign Data_out = {24'b0,Data_in};
 
 endmodule

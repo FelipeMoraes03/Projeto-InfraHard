@@ -213,7 +213,7 @@ always @(posedge clk) begin
         IorD = 3'b000;
         IRWrite = 1'b1;
         ALUSrcB = 2'b11;
-        ALUOp = 2'b001;
+        ALUOp = 2'b01;
         PCWrite = 1'b1;
         PCSource = 3'b000;
         state = ST_waiting;
