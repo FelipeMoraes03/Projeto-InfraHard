@@ -11,7 +11,7 @@
 `include "Criados/mux_regdest.v"
 `include "Criados/mux_regreadone.v"
 `include "Criados/sign_extend_16.v"
-`include "Criados/zero_extend_1.v"
+`include "Criados/zero_extender_1.v"
 `include "Criados/mux_condcontrol.v"
 
 `include "Fornecidos/Banco_reg.vhd"
