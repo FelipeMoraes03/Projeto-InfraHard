@@ -14,7 +14,7 @@ module control_unit (
   //PC
   output reg PCWriteCond,
   output reg PCWrite,
-  output reg CondControl,
+  output reg [1:0] CondControl,
 
   //Memory
   output reg MemRead,
