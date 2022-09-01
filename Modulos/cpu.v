@@ -204,6 +204,7 @@ module cpu (
 
         //Instrucoes
         OPCode,
+        Immediate[5:0],
         reset
     );
     
