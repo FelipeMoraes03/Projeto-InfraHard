@@ -204,6 +204,11 @@ module cpu (
         OFFSET_SHIFT
     );
 
+    mult_div(
+        clk,
+        
+    );
+
     mux_memtoreg MuxMTR(
         ALUOUT_Out,
         MDR_Out,

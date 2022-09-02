@@ -38,7 +38,7 @@ module control_unit2 (
 );
 
 //Variaveis
-    reg [2:0] Counter;
+    reg [5:0] Counter;
     reg [4:0] State;
 
 //Parametros
@@ -126,7 +126,7 @@ module control_unit2 (
 
                 rst_out = 1'b1;
 
-                Counter = 3'b000;
+                Counter = 6'd0;
             end
             else begin
                 State = ST_COMMON; //
@@ -153,13 +153,13 @@ module control_unit2 (
 
                 rst_out = 1'b0;
 
-                Counter = 3'b000;
+                Counter = 6'd0;
             end
         end
         else begin
             case(State)
                 ST_COMMON: begin
-                    if (Counter == 3'b000 || Counter == 3'b001 || Counter == 3'b010) begin
+                    if (Counter == 6'd0 || Counter == 6'd1 || Counter == 6'd2) begin
                         //Nesse if acontece parte do estado de busca e waiting
                         State = ST_COMMON; //
 
@@ -187,7 +187,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if (Counter == 3'b011) begin
+                    else if (Counter == 6'd3) begin
                         //Nesse else o PC eh salvo
                         State = ST_COMMON;
 
@@ -215,7 +215,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b100) begin
+                    else if(Counter == 6'd4) begin
                         //Nesse else acontece o estado de Decode
                         State = ST_COMMON;
 
@@ -243,7 +243,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b101) begin
+                    else if(Counter == 6'd5) begin
                         case(OPCode)
                             Type_R: begin
                                 case(Funct)
@@ -290,11 +290,11 @@ module control_unit2 (
 
                         rst_out = 1'b0;
 
-                        Counter = 3'b000;
+                        Counter = 6'd0;
                     end
                 end
                 ST_ADD: begin
-                    if(Counter == 3'b000 || Counter == 3'b001) begin
+                    if(Counter == 6'd0) begin
                         State = ST_ADD;
 
                         PCWrite = 1'b0;   ///
@@ -321,7 +321,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b001) begin
+                    else if(Counter == 6'd1) begin
                         State = ST_COMMON;
 
                         PCWrite = 1'b0;   ///
@@ -346,11 +346,11 @@ module control_unit2 (
 
                         rst_out = 1'b0;
 
-                        Counter = 3'b000;
+                        Counter = 6'd0;
                     end
                 end
                 ST_ADDI: begin
-                    if(Counter == 3'b000) begin
+                    if(Counter == 6'd0) begin
                         State = ST_ADDI;
 
                         PCWrite = 1'b0;   ///
@@ -377,7 +377,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b001) begin
+                    else if(Counter == 6'd1) begin
                         State = ST_COMMON;
 
                         PCWrite = 1'b0;   ///
@@ -406,7 +406,7 @@ module control_unit2 (
                     end
                 end
                 ST_AND: begin
-                    if(Counter == 3'b000) begin
+                    if(Counter == 6'd0) begin
                         State = ST_AND;
 
                         PCWrite = 1'b0;   ///
@@ -429,7 +429,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b001) begin
+                    else if(Counter == 6'd1) begin
                         State = ST_COMMON;
 
                         PCWrite = 1'b0;   ///
@@ -450,11 +450,11 @@ module control_unit2 (
                         
                         rst_out = 1'b0;
 
-                        Counter = 3'b000;
+                        Counter = 6'd0;
                     end
                 end
                 ST_SUB: begin
-                    if(Counter == 3'b000) begin
+                    if(Counter == 6'd0) begin
                         State = ST_SUB;
 
                         PCWrite = 1'b0;   ///
@@ -477,7 +477,7 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-                    else if(Counter == 3'b001) begin
+                    else if(Counter == 6'd1) begin
                         State = ST_COMMON;
 
                         PCWrite = 1'b0;   ///
@@ -498,11 +498,11 @@ module control_unit2 (
                         
                         rst_out = 1'b0;
 
-                        Counter = 3'b000;
+                        Counter = 6'd0;
                     end
                 end
                 ST_RESET: begin
-                    if(Counter == 3'b000) begin
+                    if(Counter == 6'd0) begin
                         State = ST_RESET;
 
                         PCWrite = 1'b0;
@@ -523,7 +523,7 @@ module control_unit2 (
                         
                         rst_out = 1'b1;
 
-                        Counter = 3'b000;
+                        Counter = 6'd0;
                     end
                 end
             endcase
