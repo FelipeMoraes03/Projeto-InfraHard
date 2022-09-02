@@ -33,6 +33,7 @@ module cpu (
     wire [1:0] RegDST;
     wire [1:0] ALUSrB;
     wire [1:0] RegReadOne;
+    wire [1:0] CondControl;
 
     //3 bits
     wire [2:0] IordD;
@@ -295,6 +296,7 @@ module cpu (
         RegDST,
         ALUSrB,
         RegReadOne,
+        CondControl,
 
         //3 bits
         IordD,
@@ -306,6 +308,13 @@ module cpu (
         OPCode,
         Immediate[5:0],
         reset
+    );
+
+    mux_condcontrol MuxCondControl(
+        Eq,
+        Gt,
+        CondControl,
+        CondControlOutput
     );
     
 endmodule
