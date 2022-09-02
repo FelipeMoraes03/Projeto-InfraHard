@@ -1,7 +1,6 @@
 #Ignorar testbench
 div_TB.v
 teste.v
-Testes
 work
 Simulation.cr.mti
 Simulation.mpf
