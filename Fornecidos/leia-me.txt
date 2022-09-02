@@ -1,0 +1,5 @@
+Atenção:
+
+Os arquivos .vhd são os componentes que devem ser incluídos no projeto.
+O arquivo .mif serve para a configuração da memória e deve ser usado de
+acordo com a especificação do projeto.
