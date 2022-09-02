@@ -59,14 +59,13 @@ module control_unit2 (
     parameter ST_MULT = 5'd6;
     parameter ST_MFHI = 5'd7;
     parameter ST_MFLO = 5'd8;
+    parameter ST_BNE = 6'd9;
+    parameter ST_BEQ = 6'd10;
+    parameter ST_BLE = 6'd11;
+    parameter ST_BGT = 6'd12;
 
-    parameter ST_RESET = 5'd17;
-
-    parameter ST_BNE = 6'd10;
-    parameter ST_BEQ = 6'd11;
-    parameter ST_BLE = 6'd12;
-    parameter ST_BGT = 6'd13;
-
+    parameter ST_BREAK = 5'd16; //PENÚLTIMO ESTADO!
+    parameter ST_RESET = 5'd17; //ÚLTIMO ESTADO!
 
     //Opcode
     parameter RESET = 6'b111111;
@@ -290,6 +289,9 @@ module control_unit2 (
                                     end
                                     MFLO: begin
                                         State = ST_MFLO;
+                                    end
+                                    BREAK: begin
+                                        State = ST_BREAK;
                                     end
                                 endcase
                             end
@@ -892,6 +894,38 @@ module control_unit2 (
                         IordD = 3'b000;
                         ALUOp = 3'b111;   ///
                         PCSource = 3'b011;   ///
+                        MemToReg = 3'b000;
+                        
+                        rst_out = 1'b0;
+
+                        Counter = 6'd0;
+                end
+                ST_BREAK: begin
+                        State = ST_BREAK;
+
+                        PCWrite = 1'b1;   ///
+                        PCWriteCond = 1'b0;
+                        MemControl = 1'b0;
+                        IRWrite = 1'b0;   
+                        RegWrite = 1'b0;
+                        LoadA = 1'b0; 
+                        LoadB = 1'b0;
+                        ALUSrA = 1'b0;   ///
+                        LoadALUOUT = 1'b0;
+                        LoadMDR = 1'b0;
+                        LoadHi = 1'b0; 
+                        LoadLo =  1'b0; 
+                        LoadDiv = 1'b0;
+                        MemToReg = 3'b000;
+
+                        RegDST = 2'b00;   
+                        ALUSrB = 2'b00;
+                        RegReadOne = 2'b00;
+                        CondControl = 2'b00;
+
+                        IordD = 3'b000;
+                        ALUOp = 3'b000;   ///
+                        PCSource = 3'b000;   ///
                         MemToReg = 3'b000;
                         
                         rst_out = 1'b0;
