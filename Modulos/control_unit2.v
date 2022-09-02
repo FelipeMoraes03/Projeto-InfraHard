@@ -417,6 +417,8 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        LoadALUOUT = 1'b1;
+                        LoadMDR = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -424,6 +426,8 @@ module control_unit2 (
 
                         IordD = 3'b000;
                         ALUOp = 3'b011;   ///
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
                         
                         rst_out = 1'b0;
 
@@ -440,6 +444,8 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        LoadALUOUT = 1'b1;
+                        LoadMDR = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -447,6 +453,8 @@ module control_unit2 (
 
                         IordD = 3'b000;
                         ALUOp = 3'b011;   ///
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
                         
                         rst_out = 1'b0;
 
@@ -465,6 +473,8 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        LoadALUOUT = 1'b1;
+                        LoadMDR = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -472,6 +482,8 @@ module control_unit2 (
 
                         IordD = 3'b000;
                         ALUOp = 3'b010;   ///
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
                         
                         rst_out = 1'b0;
 
@@ -488,6 +500,8 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        LoadALUOUT = 1'b1;
+                        LoadMDR = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -495,6 +509,8 @@ module control_unit2 (
 
                         IordD = 3'b000;
                         ALUOp = 3'b010;   ///
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
                         
                         rst_out = 1'b0;
 
@@ -513,6 +529,8 @@ module control_unit2 (
                         LoadA = 1'b0;
                         LoadB = 1'b0;
                         ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b1;
+                        LoadMDR = 1'b0;
 
                         RegDST = 2'b00;
                         ALUSrB = 2'b00;
@@ -520,6 +538,8 @@ module control_unit2 (
 
                         IordD = 3'b000;
                         ALUOp = 3'b000;
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
                         
                         rst_out = 1'b1;
 
