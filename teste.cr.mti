@@ -1,0 +1,217 @@
+C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Compiling package ram_constants
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package LPM_COMPONENTS
+-- Loading package ram_constants
+-- Compiling entity Memoria
+-- Compiling architecture behavioral_arch of Memoria
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_regreadone
+
+Top level modules:
+	mux_regreadone
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_pcsource
+
+Top level modules:
+	mux_pcsource
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module zero_extender_1
+
+Top level modules:
+	zero_extender_1
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module shift_left_16
+
+Top level modules:
+	shift_left_16
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_condcontrol
+
+Top level modules:
+	mux_condcontrol
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_8.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_8.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module zero_extender_8
+
+Top level modules:
+	zero_extender_8
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_regdest
+
+Top level modules:
+	mux_regdest
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_2to1
+
+Top level modules:
+	mux_2to1
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module demux_1to2
+
+Top level modules:
+	demux_1to2
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Registrador
+-- Compiling architecture behavioral_arch of Registrador
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module shift_left_2
+
+Top level modules:
+	shift_left_2
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_memtoreg
+
+Top level modules:
+	mux_memtoreg
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module shift_left_2_PC
+
+Top level modules:
+	shift_left_2_PC
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module div
+
+Top level modules:
+	div
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module control_unit2
+
+Top level modules:
+	control_unit2
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module zero_extender_8
+
+Top level modules:
+	zero_extender_8
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module sign_extend_16
+
+Top level modules:
+	sign_extend_16
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module LScontrol
+
+Top level modules:
+	LScontrol
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_iord
+
+Top level modules:
+	mux_iord
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Instr_Reg
+-- Compiling architecture behavioral_arch of Instr_Reg
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module control_unit
+
+Top level modules:
+	control_unit
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Ula32
+-- Compiling architecture behavioral of Ula32
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mult
+
+Top level modules:
+	mult
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mux_alusrb
+
+Top level modules:
+	mux_alusrb
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity RegDesloc
+-- Compiling architecture behavioral_arch of RegDesloc
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Banco_reg
+-- Compiling architecture behavioral_arch of Banco_reg
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module crntl
+
+Top level modules:
+	crntl
+
+} {} {}} C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v {1 {vlog -work work -stats=none C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module mult_div
+
+Top level modules:
+	mult_div
+
+} {} {}}

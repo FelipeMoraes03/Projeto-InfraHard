@@ -1,0 +1,844 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/intelFPGA/20.1
+Ebanco_reg
+Z0 w1662136013
+Z1 DPx4 ieee 11 numeric_std 0 22 aU^R8eGcicLcUFIaBQSL>3
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 909
+Z4 dC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas
+Z5 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd
+Z6 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd
+l0
+L69 1
+V:adHbk0Ym0TAKYW83J5Y[3
+!s100 hZ46CT_BzQl8j]02_Vf=o2
+Z7 OV;C;2020.1;71
+32
+Z8 !s110 1662142692
+!i10b 1
+Z9 !s108 1662142692.000000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd|
+Z11 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Banco_reg.vhd|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1 CvgOpt 0
+Abehavioral_arch
+R1
+R2
+R3
+DEx4 work 9 banco_reg 0 22 :adHbk0Ym0TAKYW83J5Y[3
+!i122 909
+l93
+L85 34
+VY7l=BkTbhRVIWWGL4mMo60
+!s100 RmVnX=Z0eZ>VP`R`^LJ]Q1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+vcontrol_unit
+!s110 1662142687
+!i10b 1
+!s100 EW3nSaB^o7e34aBB@hO;m0
+Z14 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I0@`JSOJVfoM@Lfe55KS^T3
+Z15 VDg1SIo80bB@j0V0VzS_@n1
+R4
+Z16 w1662136012
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v
+!i122 886
+L0 1 833
+Z17 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z18 !s108 1662142687.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/control_unit.v|
+!i113 1
+Z19 o-work work
+Z20 tCvgOpt 0
+vcontrol_unit2
+Z21 !s110 1662142694
+!i10b 1
+!s100 CUBb^<0H=KkeAjM5WJR[Q2
+R14
+IKd04I]EFk:e7F79[0Ud9T1
+R15
+R4
+w1662139960
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v
+!i122 915
+L0 1 958
+R17
+r1
+!s85 0
+31
+Z22 !s108 1662142694.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v|
+!i113 1
+R19
+R20
+vcpu
+R21
+!i10b 1
+!s100 F]Y`laIdS_b2DF9Xc>0dJ2
+R14
+Id59zkD<XO:EA>zeXG81GC1
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v
+!i122 916
+L0 1 311
+R17
+r1
+!s85 0
+31
+R22
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v|
+!i113 1
+R19
+R20
+vcrntl
+Z23 !s110 1662142688
+!i10b 1
+!s100 GYzel9IB7J8bke:ROcOae2
+R14
+INM9do:Dg7Yagn>]57Y<l60
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v
+!i122 887
+Z24 L0 1 200
+R17
+r1
+!s85 0
+31
+R18
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/crntl.v|
+!i113 1
+R19
+R20
+vdemux_1to2
+R23
+!i10b 1
+!s100 e]Z0>`Eb?>AS0Th[oEK;60
+R14
+I7gS`^@J`UGI@>>ITZ=G9Q2
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v
+!i122 888
+Z25 L0 1 13
+R17
+r1
+!s85 0
+31
+Z26 !s108 1662142688.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/demux_1to2.v|
+!i113 1
+R19
+R20
+vdiv
+R23
+!i10b 1
+!s100 8Ve:^zWR;[k@EeHzCfza]0
+R14
+I<3XYEOh_oc05H=Fh142Gm3
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v
+!i122 889
+L0 1 147
+R17
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/div.v|
+!i113 1
+R19
+R20
+Einstr_reg
+R0
+R2
+R3
+!i122 910
+R4
+Z27 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd
+Z28 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd
+l0
+L42 1
+VAfV1kYS402dnLRiFO;Z7_2
+!s100 _X]FAEHlMn?]L[?c6kUO?1
+R7
+32
+Z29 !s110 1662142693
+!i10b 1
+R9
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd|
+Z31 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Instr_Reg.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R2
+R3
+DEx4 work 9 instr_reg 0 22 AfV1kYS402dnLRiFO;Z7_2
+!i122 910
+l59
+L56 32
+VTD836jU:>9m^d?0ed1C0O3
+!s100 _AcjR?n;fJneQZzaIjJFa3
+R7
+32
+R29
+!i10b 1
+R9
+R30
+R31
+!i113 1
+R12
+R13
+vLScontrol
+R23
+!i10b 1
+!s100 7RXUANC9ojA=lOQ>K99hN3
+R14
+IUM;4Qo4ZT^z>mc83fU;iS1
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v
+!i122 890
+L0 1 26
+R17
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/LS_Control.v|
+!i113 1
+R19
+R20
+n@l@scontrol
+Ememoria
+R0
+Z32 DPx4 work 13 ram_constants 0 22 BbIcggj=<H_W75Jb?WIoZ0
+Z33 DPx3 lpm 14 lpm_components 0 22 jlWe>e^2@cAI7EQaRX2E;1
+R1
+R2
+R3
+!i122 911
+R4
+Z34 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd
+Z35 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd
+l0
+L67 1
+V<[RFRXeHV^PMOiiinkBoS0
+!s100 __XEo>II7SFLX6Xa7VZA63
+R7
+32
+R29
+!i10b 1
+Z36 !s108 1662142693.000000
+Z37 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd|
+Z38 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Memoria.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R32
+R33
+R1
+R2
+R3
+DEx4 work 7 memoria 0 22 <[RFRXeHV^PMOiiinkBoS0
+!i122 911
+l103
+L79 78
+VR9W83dOfA7lWR9j>i6THA2
+!s100 aLo:Seezh^aEQ@MaJf[__3
+R7
+32
+R29
+!i10b 1
+R36
+R37
+R38
+!i113 1
+R12
+R13
+vmult
+Z39 !s110 1662142689
+!i10b 1
+!s100 9iC:6o[VZ7=fGmo`LKD?<0
+R14
+IPDdA[DL;0I]^@6k2XkzBQ2
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v
+!i122 891
+L0 1 63
+R17
+r1
+!s85 0
+31
+R26
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult.v|
+!i113 1
+R19
+R20
+vmult_div
+R39
+!i10b 1
+!s100 mE>oc@`WKOe>iG80N2b:^1
+R14
+I`bAdbR0^e6zkhAj2nkb>42
+R15
+R4
+R16
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v
+!i122 892
+R24
+R17
+r1
+!s85 0
+31
+Z40 !s108 1662142689.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mult_div.v|
+!i113 1
+R19
+R20
+vmux_2to1
+R39
+!i10b 1
+!s100 jV<Q_G1N:L=ef677i3Bg^0
+R14
+I`KiMXQa<0WjnB_M[88QFN0
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v
+!i122 893
+R25
+R17
+r1
+!s85 0
+31
+R40
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_2to1.v|
+!i113 1
+R19
+R20
+vmux_alusrb
+R39
+!i10b 1
+!s100 HCEH9m@PDHniN_lc2]WIH0
+R14
+I=@`n0BM>gP;33DdCn@X1f3
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v
+!i122 894
+Z41 L0 1 16
+R17
+r1
+!s85 0
+31
+R40
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_alusrb.v|
+!i113 1
+R19
+R20
+vmux_condcontrol
+R39
+!i10b 1
+!s100 R<?3O^D8>@R5^WX2?GaU32
+R14
+I5`>:DSNj0gG<AoARhP5cG0
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v
+!i122 895
+R41
+R17
+r1
+!s85 0
+31
+R40
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_condcontrol.v|
+!i113 1
+R19
+R20
+vmux_iord
+Z42 !s110 1662142690
+!i10b 1
+!s100 K1hJZc:GeROFbPX6Fc<YP0
+R14
+Igz=KO9AHR08>URLObOA1h1
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v
+!i122 896
+L0 1 19
+R17
+r1
+!s85 0
+31
+R40
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_iord.v|
+!i113 1
+R19
+R20
+vmux_memtoreg
+R42
+!i10b 1
+!s100 D>AnnBHTc5YXJDRjQHYoM2
+R14
+IRNFZ3T6=dS9G1X3omGjHH0
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v
+!i122 897
+L0 1 24
+R17
+r1
+!s85 0
+31
+Z43 !s108 1662142690.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v|
+!i113 1
+R19
+R20
+vmux_numbershift
+R42
+!i10b 1
+!s100 AdUPTa[e]R5AS[zmUJ2`o0
+R14
+IN4HFdn^PUS>Mlk@d=J6l12
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_numbershift.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_numbershift.v
+!i122 898
+R25
+R17
+r1
+!s85 0
+31
+R43
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_numbershift.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_numbershift.v|
+!i113 1
+R19
+R20
+vmux_pcsource
+R42
+!i10b 1
+!s100 :eQLVSUjeLT2hUh^Kz4m70
+R14
+I@Z5dA1`mm?3kb:RX5QL9;2
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v
+!i122 899
+L0 1 23
+R17
+r1
+!s85 0
+31
+R43
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v|
+!i113 1
+R19
+R20
+vmux_regdest
+R42
+!i10b 1
+!s100 X7]DV^::42b`OTW47QN4^0
+R14
+IRX`X3H9nlAP<fj<AEE8ng1
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v
+!i122 900
+L0 1 15
+R17
+r1
+!s85 0
+31
+R43
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regdest.v|
+!i113 1
+R19
+R20
+vmux_regreadone
+Z44 !s110 1662142691
+!i10b 1
+!s100 :PHd?6kOjT^;Z]n^^^e[O0
+R14
+I2]Ug;HzGQW?UfAYETU`0U3
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v
+!i122 901
+L0 1 14
+R17
+r1
+!s85 0
+31
+Z45 !s108 1662142691.000000
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_regreadone.v|
+!i113 1
+R19
+R20
+Pram_constants
+!i122 911
+R0
+R4
+R34
+R35
+l0
+L47 1
+VBbIcggj=<H_W75Jb?WIoZ0
+!s100 5;`Z:D@MR5CT6j_[c9;6h3
+R7
+32
+R29
+!i10b 1
+R36
+R37
+R38
+!i113 1
+R12
+R13
+Eregdesloc
+R0
+R1
+R2
+R3
+!i122 912
+R4
+Z46 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd
+Z47 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd
+l0
+L80 1
+V4GibeROOKf]^CUjTE67Bo0
+!s100 =0ZG0kkZKT?Zo?iX2R9=P1
+R7
+32
+R29
+!i10b 1
+R36
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd|
+Z49 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/RegDesloc.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R1
+R2
+R3
+DEx4 work 9 regdesloc 0 22 4GibeROOKf]^CUjTE67Bo0
+!i122 912
+l98
+L93 38
+VDFCTADkAb^4XhT09kD<k32
+!s100 3`2HClJO^bJLd6@PodWh?3
+R7
+32
+R29
+!i10b 1
+R36
+R48
+R49
+!i113 1
+R12
+R13
+Eregistrador
+R0
+R2
+R3
+!i122 913
+R4
+Z50 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd
+Z51 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd
+l0
+L53 1
+VD=`aG^VOPEDP69ifb8G;52
+!s100 ^e8=Z<CbNTLXR@XGZJMQo3
+R7
+32
+R29
+!i10b 1
+R36
+Z52 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd|
+Z53 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/Registrador.vhd|
+!i113 1
+R12
+R13
+Abehavioral_arch
+R2
+R3
+DEx4 work 11 registrador 0 22 D=`aG^VOPEDP69ifb8G;52
+!i122 913
+l66
+L65 19
+V<kVfXRZJUh40ja<<lN_3:3
+!s100 EXKKzlBL1ARAk5TCN4`Vg2
+R7
+32
+R29
+!i10b 1
+R36
+R52
+R53
+!i113 1
+R12
+R13
+vshift_left_16
+R44
+!i10b 1
+!s100 <iM@k:jH@e4MzE=79k0R;0
+R14
+I_BQhK^DhhQod3CIF1`aZ61
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v
+!i122 904
+Z54 L0 1 8
+R17
+r1
+!s85 0
+31
+R45
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_16.v|
+!i113 1
+R19
+R20
+vshift_left_2
+R44
+!i10b 1
+!s100 Jfic7KDb0TN5jK1BS=EKj1
+R14
+IcbS``[YEgVi886Y7oVM`R1
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v
+!i122 902
+L0 2 8
+R17
+r1
+!s85 0
+31
+R45
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v|
+!i113 1
+R19
+R20
+vshift_left_2_PC
+R44
+!i10b 1
+!s100 o:W@i;4B?mCgC_44leOm[0
+R14
+IKUJo=KUzBkR>ib1_oNOl^1
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v
+!i122 903
+R54
+R17
+r1
+!s85 0
+31
+R45
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2_PC.v|
+!i113 1
+R19
+R20
+nshift_left_2_@p@c
+vsign_extend_16
+R8
+!i10b 1
+!s100 NO5YJ?M9Z;9XVjDH6kOUe3
+R14
+IbNPP54iC8_mh?^TGG2BYS1
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v
+!i122 906
+R54
+R17
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/sign_extend_16.v|
+!i113 1
+R19
+R20
+Eula32
+R0
+R1
+R2
+R3
+!i122 914
+R4
+Z55 8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd
+Z56 FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd
+l0
+L63 1
+VM1`EhBco;Cb9<:6CC>b?e2
+!s100 bGmbVJaTC>R`I<lBgn7@L3
+R7
+32
+R21
+!i10b 1
+R36
+Z57 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd|
+Z58 !s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Fornecidos/ula32.vhd|
+!i113 1
+R12
+R13
+Abehavioral
+R1
+R2
+R3
+DEx4 work 5 ula32 0 22 M1`EhBco;Cb9<:6CC>b?e2
+!i122 914
+l89
+L79 138
+VF94M;2UJ^55hCen3Z[Kfk0
+!s100 1E>E2KjDKb=5dkES8U2ha0
+R7
+32
+R21
+!i10b 1
+R36
+R57
+R58
+!i113 1
+R12
+R13
+vzero_extender_1
+R8
+!i10b 1
+!s100 ioIWjLb:A?I3AiU?DZBhz1
+R14
+IQQ``d?;>onVdj;KzL4HRW3
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v
+!i122 908
+R54
+R17
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extender_1.v|
+!i113 1
+R19
+R20
+vzero_extender_8
+R8
+!i10b 1
+!s100 biDzScZITGMEMhZXPD0]E2
+R14
+I_[bB7S26_^0C6OPjWY1bF2
+R15
+R4
+R0
+8C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v
+FC:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v
+!i122 907
+R54
+R17
+r1
+!s85 0
+31
+R9
+!s107 C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v|
+!s90 -reportprogress|300|-work|work|-stats=none|C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/zero_extend_8.v|
+!i113 1
+R19
+R20

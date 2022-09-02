@@ -15,6 +15,9 @@ module control_unit2 (
     output reg LoadHi,
     output reg LoadLo,
     output reg LoadDiv,
+    output reg InputShift,
+    output reg NumberShift,
+    
 
         //flags
     input wire Of,
@@ -29,14 +32,13 @@ module control_unit2 (
     output reg [1:0] RegDST,
     output reg [1:0] ALUSrB,
     output reg [1:0] RegReadOne,
-    output reg [1:0] CondControl,
-
 
         //3 bits
     output reg[2:0] IordD,
     output reg[2:0] ALUOp,
     output reg[2:0] PCSource,
     output reg[2:0] MemToReg,
+    output reg[2:0] ShiftControl,
 
         //Instrucoes
     input wire [5:0] OPCode,
@@ -60,14 +62,14 @@ module control_unit2 (
     parameter ST_MFHI = 5'd7;
     parameter ST_MFLO = 5'd8;
 
+    parameter ST_SLL = 5'd9;
+    parameter ST_SLV = 5'd10;
+    parameter ST_SRL = 5'd11;
+    parameter ST_SRA = 5'd12;
+    parameter ST_SRAV = 5'd13;
+
     parameter ST_RESET = 5'd17;
-
-    parameter ST_BNE = 6'd10;
-    parameter ST_BEQ = 6'd11;
-    parameter ST_BLE = 6'd12;
-    parameter ST_BGT = 6'd13;
-
-
+    
     //Opcode
     parameter RESET = 6'b111111;
     //Type R
@@ -137,6 +139,9 @@ module control_unit2 (
                 LoadHi = 1'b0;
                 LoadLo = 1'b0;
                 LoadDiv = 1'b0;
+                ShiftControl = 3'b000;
+                InputShift = 1'b0;
+                NumberShift = 1'b0;
 
                 RegDST = 2'b00;
                 ALUSrB = 2'b00;
@@ -164,6 +169,9 @@ module control_unit2 (
                 ALUSrA = 1'b0;
                 LoadALUOUT = 1'b0;
                 LoadMDR = 1'b0;
+                ShiftControl = 3'b000;
+                InputShift = 1'b0;
+                NumberShift = 1'b0;
 
                 RegDST = 2'b00;
                 ALUSrB = 2'b00;
@@ -196,6 +204,9 @@ module control_unit2 (
                         ALUSrA = 1'b0;
                         LoadALUOUT = 1'b0;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;
                         ALUSrB = 2'b11;
@@ -220,17 +231,20 @@ module control_unit2 (
                         IRWrite = 1'b1;   ///
                         RegWrite = 1'b0;
                         LoadA = 1'b0;
-                        LoadB = 1'b0; 
-                        ALUSrA = 1'b0; /*PC*/
+                        LoadB = 1'b0;
+                        ALUSrA = 1'b0;
                         LoadALUOUT = 1'b0;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;
-                        ALUSrB = 2'b11; /*+4*/
+                        ALUSrB = 2'b11;
                         RegReadOne = 2'b00;
 
                         IordD = 3'b000;
-                        ALUOp = 3'b001; /*SOMA*/
+                        ALUOp = 3'b001;
                         PCSource = 3'b000;
                         MemToReg = 3'b000;
 
@@ -241,7 +255,7 @@ module control_unit2 (
                     else if(Counter == 6'd4) begin
                         //Nesse else acontece o estado de Decode
                         State = ST_COMMON;
-                        LoadALUOUT = 1'b1;   ///
+
                         PCWrite = 1'b0;   ///
                         PCWriteCond = 1'b0;
                         MemControl = 1'b0;
@@ -249,16 +263,19 @@ module control_unit2 (
                         RegWrite = 1'b0;
                         LoadA = 1'b1;   ///
                         LoadB = 1'b1;   ///
-                        ALUSrA = 1'b0; /*PC*/
-
+                        ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b1;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;
-                        ALUSrB = 2'b10;   /*+IMMEDIATE*/
+                        ALUSrB = 2'b00;   ///
                         RegReadOne = 2'b00;
 
                         IordD = 3'b000;
-                        ALUOp = 3'b001;   /*SOMA*/
+                        ALUOp = 3'b000;   ///
                         PCSource = 3'b000;
                         MemToReg = 3'b000;
 
@@ -291,6 +308,15 @@ module control_unit2 (
                                     MFLO: begin
                                         State = ST_MFLO;
                                     end
+                                    SLL: begin
+                                        State = ST_SLL;
+                                    end
+                                    SRL: begin
+                                        State = ST_SRL;
+                                    end
+                                    SRA: begin
+                                        State = ST_SRA;
+                                    end                            
                                 endcase
                             end
                             
@@ -301,23 +327,6 @@ module control_unit2 (
                             RESET: begin
                                 State = ST_RESET;
                             end
-
-                            BNE: begin
-                                State = ST_BNE;
-                            end
-
-                            BEQ: begin
-                                State = ST_BEQ;
-                            end
-
-                            BLE: begin
-                                State = ST_BLE;
-                            end
-
-                            BGT: begin
-                                State = ST_BGT;
-                            end
-
                         endcase
 
                         PCWrite = 1'b0;   ///
@@ -327,9 +336,12 @@ module control_unit2 (
                         RegWrite = 1'b0;
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
-                        ALUSrA = 1'b0; 
-                        LoadALUOUT = 1'b0;   ///
+                        ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b0;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;
                         ALUSrB = 2'b00;   ///
@@ -359,6 +371,9 @@ module control_unit2 (
                         ALUSrA = 1'b1;
                         LoadALUOUT = 1'b1;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -386,6 +401,9 @@ module control_unit2 (
                         ALUSrA = 1'b1;
                         LoadALUOUT = 1'b1;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -415,6 +433,9 @@ module control_unit2 (
                         ALUSrA = 1'b1;
                         LoadALUOUT = 1'b1;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b01;   ///
@@ -442,6 +463,9 @@ module control_unit2 (
                         ALUSrA = 1'b1;
                         LoadALUOUT = 1'b1;
                         LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b01;   ///
@@ -469,6 +493,9 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -492,6 +519,9 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -517,6 +547,9 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -540,6 +573,9 @@ module control_unit2 (
                         LoadA = 1'b0;   ///
                         LoadB = 1'b0;   ///
                         ALUSrA = 1'b1;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -567,6 +603,9 @@ module control_unit2 (
                         ALUSrA = 1'b0;
                         MultDiv = 1'b0;
                         LoadDiv = 1'b1;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b00;   ///
@@ -593,6 +632,9 @@ module control_unit2 (
                         LoadHi = 1'b1; //guardar em Hi
                         LoadLo =  1'b1; //guardar em Lo
                         LoadDiv = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b00;   ///
@@ -620,6 +662,9 @@ module control_unit2 (
                         ALUSrA = 1'b0;
                         MultDiv = 1'b1;
                         LoadDiv = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b00;   ///
@@ -647,6 +692,9 @@ module control_unit2 (
                         LoadLo =  1'b1; //guardar em Lo
                         MultDiv = 1'b1;
                         LoadDiv = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;   ////
                         ALUSrB = 2'b00;   ///
@@ -674,6 +722,9 @@ module control_unit2 (
                         ALUSrA = 1'b0;
                         MultDiv = 1'b0;
                         LoadDiv = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -702,6 +753,9 @@ module control_unit2 (
                         LoadLo =  1'b0; //guardar em Lo
                         LoadDiv = 1'b0;
                         MemToReg = 3'b010;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -730,6 +784,9 @@ module control_unit2 (
                         MultDiv = 1'b0;
                         LoadDiv = 1'b0;
                         MemToReg = 3'b011;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -757,6 +814,9 @@ module control_unit2 (
                         LoadLo =  1'b0; //guardar em Lo
                         LoadDiv = 1'b0;
                         MemToReg = 3'b011;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b01;   ////
                         ALUSrB = 2'b00;   ///
@@ -770,134 +830,6 @@ module control_unit2 (
                         Counter = 6'd0;
                     end
                 end
-                ST_BNE: begin
-                        State = ST_COMMON;
-
-                        PCWrite = 1'b0;   
-                        PCWriteCond = 1'b1;   ///
-                        MemControl = 1'b0;
-                        IRWrite = 1'b0;   
-                        RegWrite = 1'b1;
-                        LoadA = 1'b0; 
-                        LoadB = 1'b0;
-                        ALUSrA = 1'b1;   ///
-                        LoadALUOUT = 1'b0; ///
-                        LoadMDR = 1'b0;
-                        LoadHi = 1'b0; 
-                        LoadLo =  1'b0; 
-                        LoadDiv = 1'b0;
-                        MemToReg = 3'b011;
-
-                        RegDST = 2'b01;   
-                        ALUSrB = 2'b00;   ///  
-                        RegReadOne = 2'b00;
-                        CondControl = 2'b00;   ///
-
-                        IordD = 3'b000;
-                        ALUOp = 3'b111;   ///
-                        PCSource = 3'b011;   ///
-                        MemToReg = 3'b000;
-                        
-                        rst_out = 1'b0;
-
-                        Counter = 6'd0;
-                end
-                ST_BEQ: begin
-                        State = ST_COMMON;
-
-                        PCWrite = 1'b0;   
-                        PCWriteCond = 1'b1;   ///
-                        MemControl = 1'b0;
-                        IRWrite = 1'b0;   
-                        RegWrite = 1'b1;
-                        LoadA = 1'b0; 
-                        LoadB = 1'b0;
-                        ALUSrA = 1'b1;   ///
-                        LoadALUOUT = 1'b0; ///
-                        LoadMDR = 1'b0;
-                        LoadHi = 1'b0; 
-                        LoadLo =  1'b0; 
-                        LoadDiv = 1'b0;
-                        MemToReg = 3'b011;
-
-                        RegDST = 2'b01;   
-                        ALUSrB = 2'b00;   ///  
-                        RegReadOne = 2'b00;
-                        CondControl = 2'b01;   ///
-
-                        IordD = 3'b000;
-                        ALUOp = 3'b111;   ///
-                        PCSource = 3'b011;   ///
-                        MemToReg = 3'b000;
-                        
-                        rst_out = 1'b0;
-
-                        Counter = 6'd0;
-                end
-                ST_BLE: begin
-                        State = ST_COMMON;
-
-                        PCWrite = 1'b0;   
-                        PCWriteCond = 1'b1;   ///
-                        MemControl = 1'b0;
-                        IRWrite = 1'b0;   
-                        RegWrite = 1'b1;
-                        LoadA = 1'b0; 
-                        LoadB = 1'b0;
-                        ALUSrA = 1'b1;   ///
-                        LoadALUOUT = 1'b0; ///
-                        LoadMDR = 1'b0;
-                        LoadHi = 1'b0; 
-                        LoadLo =  1'b0; 
-                        LoadDiv = 1'b0;
-                        MemToReg = 3'b011;
-
-                        RegDST = 2'b01;   
-                        ALUSrB = 2'b00;   ///  
-                        RegReadOne = 2'b00;
-                        CondControl = 2'b10;   ///
-
-                        IordD = 3'b000;
-                        ALUOp = 3'b111;   ///
-                        PCSource = 3'b011;   ///
-                        MemToReg = 3'b000;
-                        
-                        rst_out = 1'b0;
-
-                        Counter = 6'd0;
-                end
-                ST_BGT: begin
-                        State = ST_COMMON;
-
-                        PCWrite = 1'b0;   
-                        PCWriteCond = 1'b1;   ///
-                        MemControl = 1'b0;
-                        IRWrite = 1'b0;   
-                        RegWrite = 1'b1;
-                        LoadA = 1'b0; 
-                        LoadB = 1'b0;
-                        ALUSrA = 1'b1;   ///
-                        LoadALUOUT = 1'b0; ///
-                        LoadMDR = 1'b0;
-                        LoadHi = 1'b0; 
-                        LoadLo =  1'b0; 
-                        LoadDiv = 1'b0;
-                        MemToReg = 3'b011;
-
-                        RegDST = 2'b01;   
-                        ALUSrB = 2'b00;   ///  
-                        RegReadOne = 2'b00;
-                        CondControl = 2'b11;   ///
-
-                        IordD = 3'b000;
-                        ALUOp = 3'b111;   ///
-                        PCSource = 3'b011;   ///
-                        MemToReg = 3'b000;
-                        
-                        rst_out = 1'b0;
-
-                        Counter = 6'd0;
-                end
                 ST_RESET: begin
                     if(Counter == 6'd0) begin
                         State = ST_RESET;
@@ -910,6 +842,9 @@ module control_unit2 (
                         LoadA = 1'b0;
                         LoadB = 1'b0;
                         ALUSrA = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0;
+                        NumberShift = 1'b0;
 
                         RegDST = 2'b00;
                         ALUSrB = 2'b00;
@@ -921,6 +856,98 @@ module control_unit2 (
                         rst_out = 1'b1;
 
                         Counter = 6'd0;
+                    end
+                end
+                ST_SLL: begin
+                    if (Counter == 6'd0) begin
+                        State = ST_SLL; ///
+
+                        PCWrite = 1'b0;
+                        PCWriteCond = 1'b0;
+                        MemControl = 1'b0;
+                        IRWrite = 1'b0;
+                        RegWrite = 1'b0;
+                        LoadA = 1'b0;
+                        LoadB = 1'b0;
+                        ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b0;
+                        LoadMDR = 1'b0;
+                        ShiftControl = 3'b001; ///
+                        InputShift = 1'b1; ///
+                        NumberShift = 1'b1; ///
+
+                        RegDST = 2'b00;
+                        ALUSrB = 2'b00;
+                        RegReadOne = 2'b00;
+                
+                        IordD = 3'b000;
+                        ALUOp = 3'b000;
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
+
+                        rst_out = 1'b0;
+
+                        Counter = Counter + 1; ///
+                    end
+                    else if (Counter == 6'd1) begin
+                        State = ST_SLL; ///
+
+                        PCWrite = 1'b0;
+                        PCWriteCond = 1'b0;
+                        MemControl = 1'b0;
+                        IRWrite = 1'b0;
+                        RegWrite = 1'b0;
+                        LoadA = 1'b0;
+                        LoadB = 1'b0;
+                        ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b0;
+                        LoadMDR = 1'b0;
+                        ShiftControl = 3'b010; ///
+                        InputShift = 1'b0; 
+                        NumberShift = 1'b0; 
+
+                        RegDST = 2'b00;
+                        ALUSrB = 2'b00;
+                        RegReadOne = 2'b00;
+                
+                        IordD = 3'b000;
+                        ALUOp = 3'b000;
+                        PCSource = 3'b000;
+                        MemToReg = 3'b000;
+
+                        rst_out = 1'b0;
+
+                        Counter = Counter + 1; ///
+                    end
+                    else if (Counter == 6'd2) begin
+                        State = ST_SLL; ///
+
+                        PCWrite = 1'b0;
+                        PCWriteCond = 1'b0;
+                        MemControl = 1'b0;
+                        IRWrite = 1'b0;
+                        RegWrite = 1'b0;
+                        LoadA = 1'b0;
+                        LoadB = 1'b0;
+                        ALUSrA = 1'b0;
+                        LoadALUOUT = 1'b0;
+                        LoadMDR = 1'b0;
+                        ShiftControl = 3'b000;
+                        InputShift = 1'b0; 
+                        NumberShift = 1'b0; 
+
+                        RegDST = 2'b01; ///
+                        ALUSrB = 2'b00;
+                        RegReadOne = 2'b00;
+                
+                        IordD = 3'b000;
+                        ALUOp = 3'b000;
+                        PCSource = 3'b000;
+                        MemToReg = 3'b100; ///
+
+                        rst_out = 1'b0;
+
+                        Counter = 6'd0; ///
                     end
                 end
             endcase

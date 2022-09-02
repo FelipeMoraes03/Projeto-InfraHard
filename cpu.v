@@ -19,6 +19,8 @@ module cpu (
     wire LoadHi;
     wire LoadLo;
     wire LoadDiv;
+    wire NumberShift;
+    wire InputShift;
 
     //flags
     wire Of;
@@ -33,13 +35,13 @@ module cpu (
     wire [1:0] RegDST;
     wire [1:0] ALUSrB;
     wire [1:0] RegReadOne;
-    wire [1:0] CondControl;
 
     //3 bits
     wire [2:0] IordD;
     wire [2:0] ALUOp;
     wire [2:0] PCSource;
     wire [2:0] MemToReg;
+    wire [2:0] ShiftControl;
 
     //Instrucoes
     wire [5:0] OPCode;
@@ -72,10 +74,13 @@ module cpu (
     wire [31:0] LowIn;
     wire [31:0] Hi_Out;
     wire [31:0] Lo_Out;
+    wire [31:0] MuxInputShift_out;
+    wire [31:0] RegisterShift_out;
 
     //wires de 5 bits
     wire [4:0] ReadR1Out;
     wire [4:0] MuxRDSTOut;
+    wire [4:0] MuxNumberShift_out;
     
     wire LoadPC = ((PCWriteCond && CondControlOutput) || PCWrite);
     
@@ -186,6 +191,7 @@ module cpu (
         MuxA_Out
     );
 
+
     sign_extend_16 sign16(
         Immediate,
         ImmediateSign
@@ -247,7 +253,7 @@ module cpu (
         MDR_Out,
         Hi_Out,  //Hi_Out
         Lo_Out,  //Lo_Out
-        32'd0,  //RegShift_Out
+        RegisterShift_out,  //RegShift_Out
         32'd0,  //Demux_Out
         32'd0,  //ImmediateLui <- Immediate shiftado 16
         MemToReg,
@@ -263,6 +269,30 @@ module cpu (
         32'd0,   //Saida de EPC
         PCSource,
         PC_in
+    );
+
+    // SSL/SRL/SRA
+    mux_2to1 MuxInputShift(
+        A_Out,
+        B_Out,        
+        InputShift, //
+        MuxInputShift_out //
+    );
+
+    mux_numbershift MuxNumberShift(
+        B_Out,
+        Immediate,
+        NumberShift, //
+        MuxNumberShift_out //
+    );
+
+    RegDesloc RegisterShift(
+        clk,
+        reset,
+        ShiftControl,//
+        MuxNumberShift_out,//
+        MuxInputShift_out,//
+        RegisterShift_out//
     );
 
     control_unit2 Controle(
@@ -296,13 +326,13 @@ module cpu (
         RegDST,
         ALUSrB,
         RegReadOne,
-        CondControl,
 
         //3 bits
         IordD,
         ALUOp,
         PCSource,
         MemToReg,
+        ShiftControl,
 
         //Instrucoes
         OPCode,
@@ -310,11 +340,5 @@ module cpu (
         reset
     );
 
-    mux_condcontrol MuxCondControl(
-        Eq,
-        Gt,
-        CondControl,
-        CondControlOutput
-    );
     
 endmodule

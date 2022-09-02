@@ -1,0 +1,419 @@
+# Compile of control_unit.v was successful.
+# Compile of crntl.v was successful.
+# Compile of demux_1to2.v was successful.
+# Compile of div.v was successful.
+# Compile of LS_Control.v was successful.
+# Compile of mult.v was successful.
+# Compile of mult_div.v was successful.
+# Compile of mux_2to1.v was successful.
+# Compile of mux_alusrb.v was successful.
+# Compile of mux_condcontrol.v was successful.
+# Compile of mux_iord.v was successful.
+# Compile of mux_memtoreg.v was successful.
+# Compile of mux_numbershift.v was successful.
+# Compile of mux_pcsource.v was successful.
+# Compile of mux_regdest.v was successful.
+# Compile of mux_regreadone.v was successful.
+# Compile of shift_left_2.v was successful.
+# Compile of shift_left_2_PC.v was successful.
+# Compile of shift_left_16.v was successful.
+# Compile of sign_extend_8.v was successful.
+# Compile of sign_extend_16.v was successful.
+# Compile of zero_extend_8.v was successful.
+# Compile of zero_extender_1.v was successful.
+# Compile of Banco_reg.vhd was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of control_unit2.v was successful.
+# Compile of cpu.v was successful.
+# 31 compiles, 0 failed with no errors.
+# Load canceled
+# Compile of control_unit.v was successful.
+# Compile of crntl.v was successful.
+# Compile of demux_1to2.v was successful.
+# Compile of div.v was successful.
+# Compile of LS_Control.v was successful.
+# Compile of mult.v was successful.
+# Compile of mult_div.v was successful.
+# Compile of mux_2to1.v was successful.
+# Compile of mux_alusrb.v was successful.
+# Compile of mux_condcontrol.v was successful.
+# Compile of mux_iord.v was successful.
+# Compile of mux_memtoreg.v was successful.
+# Compile of mux_numbershift.v was successful.
+# Compile of mux_pcsource.v was successful.
+# Compile of mux_regdest.v was successful.
+# Compile of mux_regreadone.v was successful.
+# Compile of shift_left_2.v was successful.
+# Compile of shift_left_2_PC.v was successful.
+# Compile of shift_left_16.v was successful.
+# Compile of sign_extend_8.v was successful.
+# Compile of sign_extend_16.v was successful.
+# Compile of zero_extend_8.v was successful.
+# Compile of zero_extender_1.v was successful.
+# Compile of Banco_reg.vhd was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of control_unit2.v was successful.
+# Compile of cpu.v was successful.
+# 31 compiles, 0 failed with no errors.
+vsim -gui work.cpu
+# vsim -gui work.cpu 
+# Start time: 15:13:20 on Sep 02,2022
+# Loading work.cpu
+# Loading work.mux_iord
+# Loading work.mux_regreadone
+# Loading work.mux_regdest
+# Loading work.mux_2to1
+# Loading work.sign_extend_16
+# Loading work.shift_left_2
+# Loading work.mux_alusrb
+# Loading work.mult_div
+# Loading work.mux_memtoreg
+# Loading work.mux_pcsource
+# Loading work.control_unit2
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.registrador(behavioral_arch)
+# Loading ieee.numeric_std(body)
+# Loading lpm.lpm_components
+# Loading work.ram_constants
+# Loading work.memoria(behavioral_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_common_conversion(body)
+# Loading lpm.lpm_device_families(body)
+# Loading lpm.lpm_ram_dq(lpm_syn)
+# Loading work.instr_reg(behavioral_arch)
+# Loading work.banco_reg(behavioral_arch)
+# Loading work.ula32(behavioral)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (26) for port 'data_in'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'data_out'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'b'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxMTR File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 244
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'output_shift_left_2'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxPCSource File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 256
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'Controle'.  Expected 36, found 33.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'Lt'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(29).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'DivZero'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(30).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUSrB'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'RegReadOne'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'PCSource'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(40).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'MemToReg'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'ShiftControl'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'OPCode'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'Funct'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'rst_out'.
+add wave -position insertpoint  \
+sim:/cpu/clk
+add wave -position insertpoint  \
+sim:/cpu/reset
+# Break key hit
+# Compile of control_unit.v was successful.
+# Compile of crntl.v was successful.
+# Compile of demux_1to2.v was successful.
+# Compile of div.v was successful.
+# Compile of LS_Control.v was successful.
+# Compile of mult.v was successful.
+# Compile of mult_div.v was successful.
+# Compile of mux_2to1.v was successful.
+# Compile of mux_alusrb.v was successful.
+# Compile of mux_condcontrol.v was successful.
+# Compile of mux_iord.v was successful.
+# Compile of mux_memtoreg.v was successful.
+# Compile of mux_numbershift.v was successful.
+# Compile of mux_pcsource.v was successful.
+# Compile of mux_regdest.v was successful.
+# Compile of mux_regreadone.v was successful.
+# Compile of shift_left_2.v was successful.
+# Compile of shift_left_2_PC.v was successful.
+# Compile of shift_left_16.v was successful.
+# Compile of sign_extend_8.v was successful.
+# Compile of sign_extend_16.v was successful.
+# Compile of zero_extend_8.v was successful.
+# Compile of zero_extender_1.v was successful.
+# Compile of Banco_reg.vhd was successful.
+# Compile of Instr_Reg.vhd was successful.
+# Compile of Memoria.vhd was successful.
+# Compile of RegDesloc.vhd was successful.
+# Compile of Registrador.vhd was successful.
+# Compile of ula32.vhd was successful.
+# Compile of control_unit2.v was successful.
+# Compile of cpu.v was successful.
+# 31 compiles, 0 failed with no errors.
+vsim -gui work.cpu
+# End time: 15:19:04 on Sep 02,2022, Elapsed time: 0:05:44
+# Errors: 0, Warnings: 24
+# vsim -gui work.cpu 
+# Start time: 15:19:04 on Sep 02,2022
+# Loading work.cpu
+# Loading work.mux_iord
+# Loading work.mux_regreadone
+# Loading work.mux_regdest
+# Loading work.mux_2to1
+# Loading work.sign_extend_16
+# Loading work.shift_left_2
+# Loading work.mux_alusrb
+# Loading work.mult_div
+# Loading work.mux_memtoreg
+# Loading work.mux_pcsource
+# Loading work.control_unit2
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.registrador(behavioral_arch)
+# Loading ieee.numeric_std(body)
+# Loading lpm.lpm_components
+# Loading work.ram_constants
+# Loading work.memoria(behavioral_arch)
+# Loading ieee.std_logic_arith(body)
+# Loading ieee.std_logic_unsigned(body)
+# Loading lpm.lpm_common_conversion(body)
+# Loading lpm.lpm_device_families(body)
+# Loading lpm.lpm_ram_dq(lpm_syn)
+# Loading work.instr_reg(behavioral_arch)
+# Loading work.banco_reg(behavioral_arch)
+# Loading work.ula32(behavioral)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (26) for port 'data_in'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'data_out'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'b'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxMTR File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 244
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'output_shift_left_2'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxPCSource File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 256
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'Controle'.  Expected 36, found 33.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'Lt'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(29).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'DivZero'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(30).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUSrB'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'RegReadOne'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'PCSource'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(40).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'MemToReg'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'ShiftControl'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'OPCode'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'Funct'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'rst_out'.
+# Load canceled
+add wave -position insertpoint sim:/cpu/*
+add wave -position insertpoint  \
+sim:/cpu/clk
+add wave -position insertpoint  \
+sim:/cpu/clk
+add wave -position insertpoint  \
+sim:/cpu/reset
+add wave -position insertpoint  \
+sim:/cpu/LoadB
+add wave -position insertpoint  \
+sim:/cpu/Controle/ShiftControl
+add wave -position insertpoint  \
+sim:/cpu/Controle/Counter
+add wave -position insertpoint  \
+sim:/cpu/Controle/State
+add wave -position insertpoint  \
+sim:/cpu/Banco/Cluster(5)
+add wave -position insertpoint  \
+sim:/cpu/Banco/Cluster(2)
+force -freeze sim:/cpu/clk 1 0, 0 {50 ps} -r 100
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Banco
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Banco
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483645 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483646 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483647 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (26) for port 'data_in'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'data_out'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'b'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxMTR File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 244
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'output_shift_left_2'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxPCSource File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 256
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'Controle'.  Expected 36, found 33.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'Lt'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(29).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'DivZero'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(30).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUSrB'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'RegReadOne'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'PCSource'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(40).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'MemToReg'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'ShiftControl'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'OPCode'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'Funct'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'rst_out'.
+run
+# GetModuleFileName: Não foi possível encontrar o módulo especificado.
+# 
+# 
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Banco
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Banco
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Three
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_Two
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM_plus_One
+# ** Warning: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, the result will be 'X'(es).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Warning: CONV_INTEGER: There is an 'U'|'X'|'W'|'Z'|'-' in an arithmetic operand, and it has been converted to 0.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Error: Unknown intended_device_family UNUSED
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem/MEM
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483648 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483645 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483646 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Error: (vsim-86) Argument value -2147483647 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+# ** Warning: NUMERIC_STD.TO_UNSIGNED: vector truncated
+#    Time: 0 ps  Iteration: 1  Instance: /cpu/Mem
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (26) for port 'data_in'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'data_out'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/shift_left_2.v(4).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/ShiftLeft2 File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 227
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (1) for port 'b'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_memtoreg.v(2).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxMTR File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 244
+# ** Warning: (vsim-3015) [PCDPC] - Port size (32) does not match connection size (29) for port 'output_shift_left_2'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/Criados/mux_pcsource.v(3).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/MuxPCSource File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 256
+# ** Warning: (vsim-2685) [TFMPC] - Too few port connections for 'Controle'.  Expected 36, found 33.
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'Lt'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(29).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (2) for port 'DivZero'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(30).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'ALUSrB'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(34).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (2) does not match connection size (3) for port 'RegReadOne'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(35).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'PCSource'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(40).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (6) for port 'MemToReg'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(41).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (1) for port 'ShiftControl'. The port definition is at: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/control_unit2.v(42).
+#    Time: 0 ps  Iteration: 0  Instance: /cpu/Controle File: C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v Line: 267
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'OPCode'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'Funct'.
+# ** Warning: (vsim-3722) C:/Users/mgpc1/Desktop/proj-infra-hard/Projeto-InfraHard-por-via-das-duvidas/cpu.v(267): [TFMPC] - Missing connection for port 'rst_out'.
