@@ -20,6 +20,8 @@ module cpu (
     wire LoadLo;
     wire LoadDiv;
     wire LoadEPC;
+    wire NumberShift;
+    wire InputShift;
 
     //flags
     wire Of;
@@ -41,6 +43,7 @@ module cpu (
     wire [2:0] ALUOp;
     wire [2:0] PCSource;
     wire [2:0] MemToReg;
+    wire [2:0] ShiftControl;
 
     //Instrucoes
     wire [5:0] OPCode;
@@ -75,10 +78,13 @@ module cpu (
     wire [31:0] Lo_Out;
     wire [31:0] EPC_Out;
     wire [31:0] ImmediateLui;
+    wire [31:0] MuxInputShift_out;
+    wire [31:0] RegisterShift_out;
 
     //wires de 5 bits
     wire [4:0] ReadR1Out;
     wire [4:0] MuxRDSTOut;
+    wire [4:0] MuxNumberShift_out;
     
     wire LoadPC = ((PCWriteCond && CondControlOutput) || PCWrite);
     
@@ -253,9 +259,9 @@ module cpu (
     mux_memtoreg MuxMTR(
         ALUOUT_Out,
         MDR_Out,
-        Hi_Out,  //Hi_Out
-        Lo_Out,  //Lo_Out
-        32'd0,  //RegShift_Out
+        Hi_Out,
+        Lo_Out,
+        RegisterShift_out,
         32'd0,  //Demux_Out
         ImmediateLui,  //ImmediateLui <- Immediate shiftado 16
         MemToReg,
@@ -276,9 +282,30 @@ module cpu (
         OFFSET_SHIFT,
         DataMemOut,
         ALUOUT_Out,
-        32'd0,   //Saida de EPC
+        EPC_Out,   //Saida de EPC
         PCSource,
         PC_in
+    );
+
+    mux_2to1 MuxInputShift(
+        A_Out,
+        B_Out,        
+        InputShift,
+        MuxInputShift_out
+    );
+    mux_numbershift MuxNumberShift(
+        B_Out,
+        Immediate[10:6],
+        NumberShift,
+        MuxNumberShift_out
+    );
+    RegDesloc RegisterShift(
+        clk,
+        reset,
+        ShiftControl,
+        MuxNumberShift_out,
+        MuxInputShift_out,
+        RegisterShift_out
     );
 
     control_unit2 Controle(
@@ -299,6 +326,8 @@ module cpu (
         LoadLo,
         LoadDiv,
         LoadEPC,
+        NumberShift,
+        InputShift,
 
         //flags
         Of,
@@ -320,6 +349,7 @@ module cpu (
         ALUOp,
         PCSource,
         MemToReg,
+        ShiftControl,
 
         //Instrucoes
         OPCode,
