@@ -1,0 +1,5 @@
+addi 1 1 1
+addi 2 2 1
+addi 3 3 0
+break
+addi 4 4 20

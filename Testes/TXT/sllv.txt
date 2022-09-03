@@ -1,0 +1,5 @@
+addi 1 1 1000
+addi 2 2 1
+sllv 3 1 2
+addi 2 2 4
+sllv 4 1 2
