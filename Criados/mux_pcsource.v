@@ -1,6 +1,6 @@
 module mux_pcsource(input wire [31:0] aluResult,
                      input wire [31:0] PC,
-                     input wire [31:0] output_shift_left_2,
+                     input wire [27:0] output_shift_left_2,
                      input wire [31:0] memData,
 		                 input wire [31:0] aluOut,
                      input wire [31:0] epc,
