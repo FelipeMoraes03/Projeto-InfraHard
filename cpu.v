@@ -19,6 +19,7 @@ module cpu (
     wire LoadHi;
     wire LoadLo;
     wire LoadDiv;
+    wire LoadEPC;
 
     //flags
     wire Of;
@@ -72,6 +73,8 @@ module cpu (
     wire [31:0] LowIn;
     wire [31:0] Hi_Out;
     wire [31:0] Lo_Out;
+    wire [31:0] EPC_Out;
+    wire [31:0] ImmediateLui;
 
     //wires de 5 bits
     wire [4:0] ReadR1Out;
@@ -196,6 +199,11 @@ module cpu (
         ImmediateSignShift
     );
 
+    shift_left_16 shift16(
+        Immediate,
+        ImmediateLui //ImmediateLui
+    );
+
     mux_alusrb MuxB(
         B_Out,
         ImmediateSign,
@@ -249,9 +257,17 @@ module cpu (
         Lo_Out,  //Lo_Out
         32'd0,  //RegShift_Out
         32'd0,  //Demux_Out
-        32'd0,  //ImmediateLui <- Immediate shiftado 16
+        ImmediateLui,  //ImmediateLui <- Immediate shiftado 16
         MemToReg,
         WriteData
+    );
+
+    Registrador EPC(
+        clk,
+        reset,
+        LoadEPC,
+        ALU_result,
+        EPC_Out
     );
 
     mux_pcsource MuxPCSource(
@@ -282,6 +298,7 @@ module cpu (
         LoadHi,
         LoadLo,
         LoadDiv,
+        LoadEPC,
 
         //flags
         Of,
