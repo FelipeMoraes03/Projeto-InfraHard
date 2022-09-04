@@ -12,16 +12,13 @@ module LS_Control (input [31:0] value,
       
       else
         if(control == 2'b01)
-          
-          out =  {value[31:23], instruction[22:0]};
+          out =  {value[7:0], instruction[23:0]};
                                 
         else if (control == 2'b10)
-          out = {value[31:15] , instruction[14:0]};
-      	
-          
+      	  out = {value[14:0] , instruction[17:0]};
+
         else if(control == 2'b11)
           out = value;
       
     end
 endmodule
-
