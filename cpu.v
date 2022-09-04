@@ -84,8 +84,6 @@ module cpu (
     wire [31:0] Lt_extended;
     wire [31:0] LSControl1_Out;
     wire [31:0] LSControl2_Out;
-    wire [31:0] Demux_Out1;
-    wire [31:0] Demux_Out2;
     wire [31:0] LTout_Out;
     wire [31:0] LSControl_Out;
 
@@ -142,7 +140,7 @@ module cpu (
         IordD_Out,
         clk,
         MemControl,
-        Demux_Out2, //DataMemIn
+        LSControl_Out,
         DataMemOut 
     );
 
@@ -289,12 +287,6 @@ module cpu (
         DivZero
     );
 
-    demux_1to2 Demux (
-        LSControl_Out,
-        LSControl,
-        Demux_Out1,
-        Demux_Out2
-    );
 
     mux_memtoreg MuxMTR(
         LTout_Out,
@@ -302,7 +294,7 @@ module cpu (
         Hi_Out,
         Lo_Out,
         RegisterShift_Out,
-        Demux_Out1,  //Demux_Out
+        LSControl_Out,
         ImmediateLui,  //ImmediateLui <- Immediate shiftado 16
         MemToReg,
         WriteData
@@ -330,6 +322,7 @@ module cpu (
     LS_Control LSControlBlock (
         LSControl1_Out,
         LSControlSignal,
+        LSControl,
         LSControl2_Out,
         clk,
         reset,
