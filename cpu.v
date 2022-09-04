@@ -15,13 +15,13 @@ module cpu (
     wire ALUSrA;
     wire LoadALUOUT;
     wire LoadMDR;
-    wire MultDiv;
     wire LoadHi;
     wire LoadLo;
-    wire LoadDiv;
     wire LoadEPC;
     wire NumberShift;
     wire InputShift;
+    wire LTout;
+    wire LSControl;
 
     //flags
     wire Of;
@@ -37,6 +37,8 @@ module cpu (
     wire [1:0] ALUSrB;
     wire [1:0] RegReadOne;
     wire [1:0] CondControl;
+    wire [1:0] LSControlSignal;
+    wire [1:0] MultDiv;
 
     //3 bits
     wire [2:0] IordD;
@@ -52,13 +54,12 @@ module cpu (
     wire [15:0] Immediate;
     wire [25:0] OFFSET = {RS, RT, Immediate};
 
-    wire [28:0] OFFSET_SHIFT;
+    wire [27:0] OFFSET_SHIFT;
 
     //wires 32 bits
     wire [31:0] ALUOUT_Out;
-    wire [31:0] PC_out;
-    wire [31:0] IordD_out;
-    wire [31:0] DataMemIn;
+    wire [31:0] PC_Out;
+    wire [31:0] IordD_Out;
     wire [31:0] DataMemOut;
     wire [31:0] WriteData;
     wire [31:0] Data1Out;
@@ -70,7 +71,7 @@ module cpu (
     wire [31:0] ImmediateSignShift;
     wire [31:0] MuxB_Out;
     wire [31:0] PC_in;
-    wire [31:0] MDR_out;
+    wire [31:0] MDR_Out;
     wire [31:0] ALU_result;
     wire [31:0] HighIn;
     wire [31:0] LowIn;
@@ -78,13 +79,20 @@ module cpu (
     wire [31:0] Lo_Out;
     wire [31:0] EPC_Out;
     wire [31:0] ImmediateLui;
-    wire [31:0] MuxInputShift_out;
-    wire [31:0] RegisterShift_out;
+    wire [31:0] MuxInputShift_Out;
+    wire [31:0] RegisterShift_Out;
+    wire [31:0] Lt_extended;
+    wire [31:0] LSControl1_Out;
+    wire [31:0] LSControl2_Out;
+    wire [31:0] Demux_Out1;
+    wire [31:0] Demux_Out2;
+    wire [31:0] LTout_Out;
+    wire [31:0] LSControl_Out;
 
     //wires de 5 bits
     wire [4:0] ReadR1Out;
     wire [4:0] MuxRDSTOut;
-    wire [4:0] MuxNumberShift_out;
+    wire [4:0] MuxNumberShift_Out;
     
     wire LoadPC = ((PCWriteCond && CondControlOutput) || PCWrite);
     
@@ -94,22 +102,48 @@ module cpu (
         reset,
         LoadPC,
         PC_in,
-        PC_out
+        PC_Out
     );
 
     mux_iord mux_Iord(
-        PC_out,
-        ALUOUT_Out,
+        PC_Out,
+        LTout_Out, //mudei tava ALUOUT_out
         IordD,
-        IordD_out
+        IordD_Out
+    );
+    
+    zero_extender_1 zeroExtender1(
+        Lt,
+        Lt_extended
+    );
+
+    mux_2to1 mux_LTout (
+        ALUOUT_Out,
+        Lt_extended,
+        LTout,
+        LTout_Out
+    );
+
+    mux_2to1 mux_LSControl1 (
+        MDR_Out,
+        B_Out,
+        LSControl,
+        LSControl1_Out
+    );
+
+    mux_2to1 mux_LSControl2 (
+        B_Out,
+        MDR_Out,
+        LSControl,
+        LSControl2_Out
     );
 
     Memoria Mem(
-        IordD_out,
+        IordD_Out,
         clk,
         MemControl,
-        DataMemIn,
-        DataMemOut
+        Demux_Out2, //DataMemIn
+        DataMemOut 
     );
 
     Registrador MDR(
@@ -117,7 +151,7 @@ module cpu (
         reset,
         LoadMDR,
         DataMemOut,
-        MDR_out
+        MDR_Out
     );
 
     Instr_Reg Inst_(
@@ -189,7 +223,7 @@ module cpu (
     );
 
     mux_2to1 MuxA(
-        PC_out,
+        PC_Out,
         A_Out,
         ALUSrA,
         MuxA_Out
@@ -239,7 +273,7 @@ module cpu (
         ALUOUT_Out
     );
 
-    shift_left_2 ShiftLeft2(
+    shift_left_2_PC ShiftLeft2PC(
         OFFSET,
         OFFSET_SHIFT
     );
@@ -252,17 +286,23 @@ module cpu (
         B_Out,
         HighIn,
         LowIn,
-        DivZero,
-        LoadDiv
+        DivZero
+    );
+
+    demux_1to2 Demux (
+        LSControl_Out,
+        LSControl,
+        Demux_Out1,
+        Demux_Out2
     );
 
     mux_memtoreg MuxMTR(
-        ALUOUT_Out,
+        LTout_Out,
         MDR_Out,
-        Hi_Out,  //Hi_Out
-        Lo_Out,  //Lo_Out
-        RegisterShift_out,  //RegShift_Out
-        32'd0,  //Demux_Out
+        Hi_Out,
+        Lo_Out,
+        RegisterShift_Out,
+        Demux_Out1,  //Demux_Out
         ImmediateLui,  //ImmediateLui <- Immediate shiftado 16
         MemToReg,
         WriteData
@@ -278,37 +318,43 @@ module cpu (
 
     mux_pcsource MuxPCSource(
         ALU_result,
-        PC_out,
+        PC_Out[31:28],
         OFFSET_SHIFT,
-        DataMemOut,
+        DataMemOut, //DataMemIn
         ALUOUT_Out,
-        32'd0,   //Saida de EPC
+        EPC_Out,   //Saida de EPC
         PCSource,
         PC_in
     );
 
-    // SSL/SRL/SRA
+    LS_Control LSControlBlock (
+        LSControl1_Out,
+        LSControlSignal,
+        LSControl2_Out,
+        clk,
+        reset,
+        LSControl_Out
+    );
+
     mux_2to1 MuxInputShift(
         A_Out,
         B_Out,        
-        InputShift, //
-        MuxInputShift_out //
+        InputShift,
+        MuxInputShift_Out
     );
-
     mux_numbershift MuxNumberShift(
         B_Out,
         Immediate[10:6],
-        NumberShift, //
-        MuxNumberShift_out //
+        NumberShift,
+        MuxNumberShift_Out
     );
-
     RegDesloc RegisterShift(
         clk,
         reset,
-        ShiftControl,//
-        MuxNumberShift_out,//
-        MuxInputShift_out,//
-        RegisterShift_out//
+        ShiftControl,
+        MuxNumberShift_Out,
+        MuxInputShift_Out,
+        RegisterShift_Out
     );
 
     control_unit2 Controle(
@@ -324,13 +370,14 @@ module cpu (
         ALUSrA,
         LoadALUOUT,
         LoadMDR,
-        MultDiv,
         LoadHi,
         LoadLo,
-        LoadDiv,
         LoadEPC,
         NumberShift,
         InputShift,
+        LTout,
+        LSControl,
+        
 
         //flags
         Of,
@@ -346,6 +393,8 @@ module cpu (
         ALUSrB,
         RegReadOne,
         CondControl,
+        LSControlSignal,
+        MultDiv,
 
         //3 bits
         IordD,
