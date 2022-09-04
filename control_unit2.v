@@ -3627,6 +3627,7 @@ module control_unit2 (
                 end
                 ST_POP: begin
                     if (Counter == 6'd0 || Counter == 6'd1) begin
+                        //Passa SP para ALUOUT
                         State = ST_POP; //
 
                         PCWrite = 1'b0;
@@ -3667,6 +3668,7 @@ module control_unit2 (
                     end
 
                     else if (Counter == 6'd2 || Counter == 6'd3 || Counter == 6'd4) begin
+                        //Pega de ALUOUT, joga na memoria como address e salva no MDR
                         State = ST_POP; //
 
                         PCWrite = 1'b0;
@@ -3693,7 +3695,7 @@ module control_unit2 (
                         ALUSrB = 2'b00;
                         RegReadOne = 2'b00;
                         CondControl = 2'b00;
-                        LSControlSignal = 2'b11;
+                        LSControlSignal = 2'b00;
 
                         IordD = 3'b001;
                         ALUOp = 3'b000;
@@ -3706,13 +3708,14 @@ module control_unit2 (
                         Counter = Counter + 1;
                     end
                     else if (Counter == 6'd5) begin
+                        //Salva MDR em RT
                         State = ST_POP; //
 
                         PCWrite = 1'b0;
                         PCWriteCond = 1'b0;
                         MemControl = 1'b0;
                         IRWrite = 1'b0;
-                        RegWrite = 1'b1;
+                        RegWrite = 1'b1; //
                         LoadA = 1'b0;
                         LoadB = 1'b0;
                         ALUSrA = 1'b0;
@@ -3728,62 +3731,24 @@ module control_unit2 (
                         LTout = 1'b0;
                         LSControl = 1'b0;
 
-                        RegDST = 2'b00;
+                        RegDST = 2'b00; //
                         ALUSrB = 2'b00;
                         RegReadOne = 2'b00;
                         CondControl = 2'b00;
-                        LSControlSignal = 2'b11;
+                        LSControlSignal = 2'b00;
 
-                        IordD = 3'b001;
+                        IordD = 3'b000;
                         ALUOp = 3'b000;
                         PCSource = 3'b000;
-                        MemToReg = 3'b101;
+                        MemToReg = 3'b001; //
                         ShiftControl = 3'b000;
                         
                         rst_out = 1'b0;
 
                         Counter = Counter + 1;
                     end
-                    else if (Counter == 6'd6) begin
-                        State = ST_POP; //
-
-                        PCWrite = 1'b0;
-                        PCWriteCond = 1'b0;
-                        MemControl = 1'b0;
-                        IRWrite = 1'b0;
-                        RegWrite = 1'b1;
-                        LoadA = 1'b0;
-                        LoadB = 1'b0;
-                        ALUSrA = 1'b0;
-                        LoadALUOUT = 1'b0;
-                        LoadMDR = 1'b0;
-                        MultDiv = 2'b00;
-                        LoadHi = 1'b0;
-                        LoadLo = 1'b0;
-    
-                        LoadEPC = 1'b0;
-                        InputShift = 1'b0;
-                        NumberShift = 1'b0;
-                        LTout = 1'b0;
-                        LSControl = 1'b0;
-
-                        RegDST = 2'b00;
-                        ALUSrB = 2'b00;
-                        RegReadOne = 2'b00;
-                        CondControl = 2'b00;
-                        LSControlSignal = 2'b11;
-
-                        IordD = 3'b001;
-                        ALUOp = 3'b000;
-                        PCSource = 3'b000;
-                        MemToReg = 3'b101;
-                        ShiftControl = 3'b000;
-                        
-                        rst_out = 1'b0;
-
-                        Counter = Counter + 1;
-                    end
-                    else if(Counter == 6'd7 || Counter == 6'd8) begin
+                    else if(Counter == 6'd6 || Counter == 6'd7) begin
+                        //Calcula SP+4
                         State = ST_POP;
 
                         PCWrite = 1'b0;
@@ -3822,7 +3787,8 @@ module control_unit2 (
                         Counter = Counter + 1; //
                     end
 
-                    else if(Counter == 6'd9) begin
+                    else if(Counter == 6'd8) begin
+                        //Salvamos SP+4 em SP
                         State = ST_COMMON;
 
                         PCWrite = 1'b0;
@@ -3901,7 +3867,6 @@ module control_unit2 (
 
                         Counter = Counter + 1;
                     end
-
                     else if(Counter == 6'd2) begin
                         State = ST_PUSH; //
 
@@ -3951,8 +3916,8 @@ module control_unit2 (
                         RegWrite = 1'b0; //
                         LoadA = 1'b1;
                         LoadB = 1'b0;
-                        ALUSrA = 1'b0;
-                        LoadALUOUT = 1'b0;
+                        ALUSrA = 1'b1; //
+                        LoadALUOUT = 1'b1; // 
                         LoadMDR = 1'b0;
                         MultDiv = 2'b00;
                         LoadHi = 1'b0;
@@ -3963,9 +3928,9 @@ module control_unit2 (
                         LTout = 1'b0; //
                         LSControl = 1'b0;
 
-                        RegDST = 2'b10; //
+                        RegDST = 2'b00; //
                         ALUSrB = 2'b00;
-                        RegReadOne = 2'b00;
+                        RegReadOne = 2'b01; //
                         CondControl = 2'b00;
                         LSControlSignal = 2'b00;
                         
@@ -4062,5 +4027,4 @@ module control_unit2 (
             endcase
         end
     end
-    
 endmodule
