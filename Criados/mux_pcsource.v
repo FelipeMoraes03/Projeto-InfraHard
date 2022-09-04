@@ -1,6 +1,6 @@
 module mux_pcsource(input wire [31:0] aluResult,
-                     input wire [31:0] PC,
-                     input wire [31:0] output_shift_left_2,
+                     input wire [3:0] PC_sig,
+                     input wire [27:0] output_shift_left_2,
                      input wire [31:0] memData,
 		                 input wire [31:0] aluOut,
                      input wire [31:0] epc,
@@ -11,7 +11,7 @@ module mux_pcsource(input wire [31:0] aluResult,
   always@(*) begin
     case (sel)
       3'b000: out = aluResult;
-      3'b001: out = {output_shift_left_2, PC[31:28]};
+      3'b001: out = {PC_sig, output_shift_left_2};
       3'b010: out = memData;
       3'b011: out = aluOut;
       3'b100: out = epc;
