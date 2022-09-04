@@ -18,7 +18,7 @@ module mux_memtoreg(input wire [31:0] a,
       3'b100: out = e;
       3'b101: out = f;
       3'b110: out = g;
-      3'b111: out = 32'b100010101; //277 em binario
+      3'b111: out = 32'd227; //227 em binario
     endcase
   end
 endmodule
