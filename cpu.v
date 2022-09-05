@@ -326,7 +326,6 @@ module cpu (
         LTout,
         LSControl,
         
-
         //flags
         Of,
         Ng,
@@ -367,14 +366,13 @@ module cpu (
         RegisterShift_Out
     );
 
-        Memoria Mem(
+    Memoria Mem(
         IordD_Out,
         clk,
         MemControl,
         LSControl_Out,
         DataMemOut 
     );
-
 
     Instr_Reg Inst_(
         clk,
