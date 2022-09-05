@@ -1,4 +1,4 @@
-module LS_Control_ (input [31:0] b,
+module LS_Control (input [31:0] b,
                   input [1:0] control,
                   input control2,
                   input [31:0] mdr,
