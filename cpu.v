@@ -96,100 +96,7 @@ module cpu (
     
     wire LoadPC = ((PCWriteCond && CondControlOutput) || PCWrite);
     
-
-    Registrador PC(
-        clk,
-        reset,
-        LoadPC,
-        PC_in,
-        PC_Out
-    );
-
-    mux_iord mux_Iord(
-        PC_Out,
-        LTout_Out, //mudei tava ALUOUT_out
-        IordD,
-        IordD_Out
-    );
-    
-    zero_extender_1 zeroExtender1(
-        Lt,
-        Lt_extended
-    );
-
-    mux_2to1 mux_LTout (
-        ALUOUT_Out,
-        Lt_extended,
-        LTout,
-        LTout_Out
-    );
-
-    mux_2to1 mux_LSControl1 (
-        MDR_Out,
-        B_Out,
-        LSControl,
-        LSControl1_Out
-    );
-
-    mux_2to1 mux_LSControl2 (
-        B_Out,
-        MDR_Out,
-        LSControl,
-        LSControl2_Out
-    );
-
-    Memoria Mem(
-        IordD_Out,
-        clk,
-        MemControl,
-        LSControl_Out, //DataMemIn
-        DataMemOut 
-    );
-
-    Registrador MDR(
-        clk,
-        reset,
-        LoadMDR,
-        DataMemOut,
-        MDR_Out
-    );
-
-    Instr_Reg Inst_(
-        clk,
-        reset,
-        IRWrite,
-        DataMemOut,
-        OPCode,
-        RS,
-        RT,
-        Immediate
-    );
-
-    mux_regreadone MuxRR1(
-        RS,
-        RegReadOne,
-        ReadR1Out
-    );
-
-    mux_regdest MuxRDST(
-        RT,
-        Immediate[15:11],
-        RegDST,
-        MuxRDSTOut
-    );
-
-    Banco_reg Banco(
-        clk,
-        reset,
-        RegWrite,
-        ReadR1Out,
-        RT,
-        MuxRDSTOut,
-        WriteData,
-        Data1Out,
-        Data2Out
-    );
-
+    //Registradores
     Registrador A(
         clk,
         reset,
@@ -222,47 +129,20 @@ module cpu (
         Lo_Out
     );
 
-    mux_2to1 MuxA(
-        PC_Out,
-        A_Out,
-        ALUSrA,
-        MuxA_Out
+    Registrador PC(
+        clk,
+        reset,
+        LoadPC,
+        PC_in,
+        PC_Out
     );
 
-    sign_extend_16 sign16(
-        Immediate,
-        ImmediateSign
-    );
-
-    shift_left_2 shift2(
-        ImmediateSign,
-        ImmediateSignShift
-    );
-
-    shift_left_16 shift16(
-        Immediate,
-        ImmediateLui //ImmediateLui
-    );
-
-    mux_alusrb MuxB(
-        B_Out,
-        ImmediateSign,
-        ImmediateSignShift,
-        ALUSrB,
-        MuxB_Out
-    );
-
-    ula32 ALU(
-        MuxA_Out,
-        MuxB_Out,
-        ALUOp,
-        ALU_result,
-        Of,
-        Ng,
-        Zr,
-        Eq,
-        Gt,
-        Lt
+    Registrador MDR(
+        clk,
+        reset,
+        LoadMDR,
+        DataMemOut,
+        MDR_Out
     );
 
     Registrador ALUOUT(
@@ -273,9 +153,69 @@ module cpu (
         ALUOUT_Out
     );
 
-    shift_left_2_PC ShiftLeft2PC(
-        OFFSET,
-        OFFSET_SHIFT
+    Registrador EPC(
+        clk,
+        reset,
+        LoadEPC,
+        ALU_result,
+        EPC_Out
+    );
+
+    //MUX's
+    mux_iord mux_Iord(
+        PC_Out,
+        LTout_Out,
+        IordD,
+        IordD_Out
+    );
+
+    mux_2to1 mux_LTout (
+        ALUOUT_Out,
+        Lt_extended,
+        LTout,
+        LTout_Out
+    );
+
+    mux_2to1 mux_LSControl1 (
+        MDR_Out,
+        B_Out,
+        LSControl,
+        LSControl1_Out
+    );
+
+    mux_2to1 mux_LSControl2 (
+        B_Out,
+        MDR_Out,
+        LSControl,
+        LSControl2_Out
+    );
+
+    mux_regreadone MuxRR1(
+        RS,
+        RegReadOne,
+        ReadR1Out
+    );
+
+    mux_regdest MuxRDST(
+        RT,
+        Immediate[15:11],
+        RegDST,
+        MuxRDSTOut
+    );
+
+    mux_2to1 MuxA(
+        PC_Out,
+        A_Out,
+        ALUSrA,
+        MuxA_Out
+    );
+
+    mux_alusrb MuxB(
+        B_Out,
+        ImmediateSign,
+        ImmediateSignShift,
+        ALUSrB,
+        MuxB_Out
     );
 
     mult_div DivMult(
@@ -296,30 +236,70 @@ module cpu (
         Lo_Out,
         RegisterShift_Out,
         LSControl_Out,
-        ImmediateLui,  //ImmediateLui <- Immediate shiftado 16
+        ImmediateLui,
         MemToReg,
         WriteData
-    );
-
-    Registrador EPC(
-        clk,
-        reset,
-        LoadEPC,
-        ALU_result,
-        EPC_Out
     );
 
     mux_pcsource MuxPCSource(
         ALU_result,
         PC_Out[31:28],
         OFFSET_SHIFT,
-        DataMemOut, //DataMemIn
+        DataMemOut,
         ALUOUT_Out,
-        EPC_Out,   //Saida de EPC
+        EPC_Out,
         PCSource,
         PC_in
     );
 
+    mux_2to1 MuxInputShift(
+        A_Out,
+        B_Out,        
+        InputShift,
+        MuxInputShift_Out
+    );
+
+    mux_condcontrol MuxCondControl(
+        Eq,
+        Gt,
+        CondControl,
+        CondControlOutput
+    );
+
+    mux_numbershift MuxNumberShift(
+        B_Out,
+        Immediate[10:6],
+        NumberShift,
+        MuxNumberShift_Out
+    );
+
+    //Sign Extender & Zero Extender & Shift Left 2
+    sign_extend_16 sign16(
+        Immediate,
+        ImmediateSign
+    );
+
+    shift_left_2 shift2(
+        ImmediateSign,
+        ImmediateSignShift
+    );
+
+    shift_left_16 shift16(
+        Immediate,
+        ImmediateLui
+    );
+
+    shift_left_2_PC ShiftLeft2PC(
+        OFFSET,
+        OFFSET_SHIFT
+    );
+
+    zero_extender_1 zeroExtender1(
+        Lt,
+        Lt_extended
+    );
+    
+    //CRIADOS  
     LS_Control LSControlBlock (
         B_Out,
         LSControlSignal,
@@ -330,25 +310,17 @@ module cpu (
         LSControl_Out
     );
 
-    mux_2to1 MuxInputShift(
-        A_Out,
-        B_Out,        
-        InputShift,
-        MuxInputShift_Out
-    );
-    mux_numbershift MuxNumberShift(
-        B_Out,
-        Immediate[10:6],
-        NumberShift,
-        MuxNumberShift_Out
-    );
-    RegDesloc RegisterShift(
-        clk,
-        reset,
-        ShiftControl,
-        MuxNumberShift_Out,
-        MuxInputShift_Out,
-        RegisterShift_Out
+    ula32 ALU(
+        MuxA_Out,
+        MuxB_Out,
+        ALUOp,
+        ALU_result,
+        Of,
+        Ng,
+        Zr,
+        Eq,
+        Gt,
+        Lt
     );
 
     control_unit2 Controle(
@@ -402,12 +374,47 @@ module cpu (
         Immediate[5:0],
         reset
     );
+    
+    //DADOS
+    RegDesloc RegisterShift(
+        clk,
+        reset,
+        ShiftControl,
+        MuxNumberShift_Out,
+        MuxInputShift_Out,
+        RegisterShift_Out
+    );
 
-    mux_condcontrol MuxCondControl(
-        Eq,
-        Gt,
-        CondControl,
-        CondControlOutput
+        Memoria Mem(
+        IordD_Out,
+        clk,
+        MemControl,
+        LSControl_Out,
+        DataMemOut 
+    );
+
+
+    Instr_Reg Inst_(
+        clk,
+        reset,
+        IRWrite,
+        DataMemOut,
+        OPCode,
+        RS,
+        RT,
+        Immediate
+    );
+
+    Banco_reg Banco(
+        clk,
+        reset,
+        RegWrite,
+        ReadR1Out,
+        RT,
+        MuxRDSTOut,
+        WriteData,
+        Data1Out,
+        Data2Out
     );
     
 endmodule
