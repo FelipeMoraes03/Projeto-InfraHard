@@ -82,10 +82,6 @@ module cpu (
     wire [31:0] MuxInputShift_Out;
     wire [31:0] RegisterShift_Out;
     wire [31:0] Lt_extended;
-    wire [31:0] LSControl1_Out;
-    wire [31:0] LSControl2_Out;
-    // wire [31:0] Demux_Out1;
-    // wire [31:0] Demux_Out2;
     wire [31:0] LTout_Out;
     wire [31:0] LSControl_Out;
 
@@ -174,20 +170,6 @@ module cpu (
         Lt_extended,
         LTout,
         LTout_Out
-    );
-
-    mux_2to1 mux_LSControl1 (
-        MDR_Out,
-        B_Out,
-        LSControl,
-        LSControl1_Out
-    );
-
-    mux_2to1 mux_LSControl2 (
-        B_Out,
-        MDR_Out,
-        LSControl,
-        LSControl2_Out
     );
 
     mux_regreadone MuxRR1(
