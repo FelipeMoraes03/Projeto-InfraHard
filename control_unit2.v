@@ -103,7 +103,7 @@ module control_unit2 (
 
     parameter ST_BREAK = 6'd32; //PENÚLTIMO ESTADO!
     parameter ST_RESET = 6'd33; //ÚLTIMO ESTADO!
-    parameter ST_OPN = 6'd34;
+    parameter ST_OPN = 6'd38;
 
     //Opcode
     parameter RESET = 6'b111111;
